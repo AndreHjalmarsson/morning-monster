@@ -4,17 +4,23 @@ import { StyleSheet, Text, View, TextInput } from 'react-native';
 export default class Landing extends Component {
   constructor() {
     super();
-    this.state = { textValue: '' };
+    this.state = { username: '', password: '' };
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Landing</Text>
         <TextInput
+          style={styles.textField}
           placeholder="Username"
-          value={this.state.textValue}
-          onChangeText={text => this.setState({ textValue: text })}
+          value={this.state.username}
+          onChangeText={text => this.setState({ username: text })}
+        />
+        <TextInput
+          style={styles.textField}
+          placeholder="Password"
+          value={this.state.password}
+          onChangeText={text => this.setState({ password: text })}
         />
       </View>
     );
@@ -28,5 +34,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'pink',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  textField: {
+    borderColor: 'white',
+    width: '30%',
+    marginBottom: 10,
+    height: 30,
+    textAlign: 'center',
+    borderWidth: 1,
+    backgroundColor: 'white',
+    borderRadius: 7
   }
 });
