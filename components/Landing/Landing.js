@@ -12,7 +12,7 @@ export default class Landing extends Component {
       <View style={styles.container}>
         <Text>Landing</Text>
         <TextInput
-          placeholder="Enter"
+          placeholder="Username"
           value={this.state.textValue}
           onChangeText={text => this.setState({ textValue: text })}
         />
@@ -24,7 +24,8 @@ export default class Landing extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    width: '100%',
+    backgroundColor: 'pink',
     alignItems: 'center',
     justifyContent: 'center'
   }
