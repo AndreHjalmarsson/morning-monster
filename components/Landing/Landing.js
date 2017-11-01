@@ -37,9 +37,9 @@ const styles = StyleSheet.create({
   },
   textField: {
     borderColor: 'white',
-    width: '30%',
+    width: '70%',
     marginBottom: 10,
-    height: 30,
+    height: 40,
     textAlign: 'center',
     borderWidth: 1,
     backgroundColor: 'white',
