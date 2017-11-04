@@ -10,8 +10,14 @@ export default class Home extends Component {
       <Swiper loop={false} showsPagination={false} index={0}>
         <View style={styles.container}>
           <Text>Home</Text>
+          <Text>Home</Text>
         </View>
-        <Swiper horizontal={false} loop={false} showsPagination={false}>
+        <Swiper
+          horizontal={false}
+          loop={false}
+          showsPagination={false}
+          scrollEnabled={false}
+        >
           <View style={styles.container}>
             <Alarm />
           </View>

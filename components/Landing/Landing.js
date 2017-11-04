@@ -1,27 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+
+import LoginForm from '../LoginForm/LoginForm';
 
 export default class Landing extends Component {
-  constructor() {
-    super();
-    this.state = { username: '', password: '' };
-  }
-
   render() {
     return (
       <View style={styles.container}>
-        <TextInput
-          style={styles.textField}
-          placeholder="Username"
-          value={this.state.username}
-          onChangeText={text => this.setState({ username: text })}
-        />
-        <TextInput
-          style={styles.textField}
-          placeholder="Password"
-          value={this.state.password}
-          onChangeText={text => this.setState({ password: text })}
-        />
+        <LoginForm />
       </View>
     );
   }
