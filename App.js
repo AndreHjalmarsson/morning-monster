@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Swiper from 'react-native-swiper';
+import firebase from 'firebase';
 
 import Landing from './components/Landing/Landing';
 import Home from './components/Home/Home';
 
 export default class App extends Component {
+  componentWillMount() {
+    firebase.initializeApp({
+      apiKey: 'AIzaSyAqBrGHxkelJc8Dgxk-wdPUTyIrWHkAvgk',
+      authDomain: 'morning-monster.firebaseapp.com',
+      databaseURL: 'https://morning-monster.firebaseio.com',
+      projectId: 'morning-monster',
+      storageBucket: 'morning-monster.appspot.com',
+      messagingSenderId: '423602998161'
+    });
+  }
+
   render() {
     return (
       <Swiper loop={false} showsPagination={false} index={0}>
