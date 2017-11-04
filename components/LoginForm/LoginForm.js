@@ -15,12 +15,14 @@ export default class Loginform extends Component {
           placeholder="Username"
           value={this.state.username}
           onChangeText={text => this.setState({ username: text })}
+          autoCorrect={false}
         />
         <TextInput
           style={styles.textField}
           placeholder="Password"
           value={this.state.password}
           onChangeText={text => this.setState({ password: text })}
+          autoCorrect={false}
         />
       </View>
     );
