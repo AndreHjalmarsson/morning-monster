@@ -2,35 +2,18 @@ import React, { Component } from 'react';
 import { Text, View, TextInput, Button } from 'react-native';
 import firebase from 'firebase';
 
-import { Spinner } from './common';
-
-export default class Loginform extends Component {
+export default class RegisterForm extends Component {
   constructor() {
     super();
-    this.state = { username: '', password: '', err: '', loading: false };
+    this.state = { username: '', password: '', err: '' };
   }
 
   onButtonPress() {
     const { username, password } = this.state;
-
-    this.setState({ err: '', loading: true });
-
     firebase
       .auth()
-      .signInWithEmailAndPassword(username, password)
-      .then(() =>
-        setState({ username: '', password: '', err: '', loading: false })
-      )
-      .catch(() =>
-        this.setState({ err: 'Something went wrong', loading: false })
-      );
-  }
-
-  renderButton() {
-    if (this.state.loading) {
-      return <Spinner />;
-    }
-    return <Button title={'LOGIN'} onPress={this.onButtonPress.bind(this)} />;
+      .createUserWithEmailAndPassword(username, password)
+      .catch(() => this.setState({ err: 'Something went wrong' }));
   }
 
   render() {
@@ -51,7 +34,7 @@ export default class Loginform extends Component {
           secureTextEntry={true}
           autoCorrect={false}
         />
-        {this.renderButton()}
+        <Button title={'Register'} onPress={this.onButtonPress.bind(this)} />
         <Text>{this.state.err}</Text>
       </View>
     );
@@ -61,6 +44,7 @@ export default class Loginform extends Component {
 const styles = {
   container: {
     width: '100%',
+    backgroundColor: 'pink',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
