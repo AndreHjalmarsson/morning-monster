@@ -7,7 +7,7 @@ import * as actionCreators from './actions';
 import Landing from './components/Landing';
 import Home from './components/Home';
 
-export default class Root extends Component {
+class Root extends Component {
   renderHome() {
     if (this.props.auth) {
       return <Home />;
@@ -27,7 +27,7 @@ function mapStateToProps(state) {
   };
 }
 
-connect(mapStateToProps, actionCreators)(Root);
+export default connect(mapStateToProps, actionCreators)(Root);
 
 const styles = {
   container: {

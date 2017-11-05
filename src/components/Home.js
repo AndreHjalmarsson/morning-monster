@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, Button } from 'react-native';
 import Swiper from 'react-native-swiper';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions';
 
 import Alarm from './Alarm';
 
-export default class Home extends Component {
+class Home extends Component {
   render() {
     return (
       <Swiper loop={false} showsPagination={false} index={0}>
@@ -26,6 +28,14 @@ export default class Home extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    authed: state.auth.authed
+  };
+}
+
+export default connect(mapStateToProps, actionCreators)(Home);
 
 const styles = {
   container: {
