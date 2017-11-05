@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { Text, View, TextInput, Button } from 'react-native';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions';
 
 import { Spinner } from './common';
 
-export default class Loginform extends Component {
+export default class LoginForm extends Component {
   constructor() {
     super();
     this.state = { username: '', password: '', err: '', loading: false };
@@ -14,11 +16,10 @@ export default class Loginform extends Component {
   onButtonPress() {
     const { username, password } = this.state;
 
-    this.setState({ err: '', loading: true });
-
     firebase
       .auth()
       .signInWithEmailAndPassword(username, password)
+      .then(() => this.props.loginUser())
       .catch(() =>
         this.setState({ err: 'Something went wrong', loading: false })
       );
@@ -60,6 +61,8 @@ export default class Loginform extends Component {
     );
   }
 }
+
+connect(null, actionCreators)(LoginForm);
 
 const styles = {
   container: {
