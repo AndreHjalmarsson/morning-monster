@@ -7,7 +7,7 @@ import * as actionCreators from '../actions';
 
 import { Spinner } from './common';
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
   constructor() {
     super();
     this.state = { username: '', password: '', err: '', loading: false };
@@ -56,13 +56,20 @@ export default class LoginForm extends Component {
         />
         {this.renderButton()}
         <Text>{this.state.err}</Text>
+        <Text>{this.props.authed}</Text>
         {this.renderRegisterButton()}
       </View>
     );
   }
 }
 
-connect(null, actionCreators)(LoginForm);
+function mapStateToProps(state) {
+  return {
+    authed: state.auth.authed
+  };
+}
+
+export default connect(mapStateToProps, actionCreators)(LoginForm);
 
 const styles = {
   container: {
