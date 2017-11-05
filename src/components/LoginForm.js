@@ -19,9 +19,6 @@ export default class Loginform extends Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(username, password)
-      .then(() =>
-        setState({ username: '', password: '', err: '', loading: false })
-      )
       .catch(() =>
         this.setState({ err: 'Something went wrong', loading: false })
       );
