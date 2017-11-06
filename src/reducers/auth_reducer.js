@@ -1,11 +1,20 @@
-import { AUTH_USER, UNAUTH_USER } from '../actions/types';
+import {
+  AUTH_USER,
+  UNAUTH_USER,
+  LOADING,
+  STOP_LOADING
+} from '../actions/types';
 
-export default function(state = {}, action) {
+export default function(state = { loading: false }, action) {
   switch (action.type) {
     case AUTH_USER:
       return { ...state, authed: true };
     case UNAUTH_USER:
       return { ...state, authed: false };
+    case LOADING:
+      return { ...state, loading: true };
+    case STOP_LOADING:
+      return { ...state, loading: false };
   }
   return state;
 }
