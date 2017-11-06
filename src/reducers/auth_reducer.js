@@ -5,7 +5,7 @@ import {
   STOP_LOADING
 } from '../actions/types';
 
-export default function(state = { loading: false }, action) {
+export default function(state = {}, action) {
   switch (action.type) {
     case AUTH_USER:
       return { ...state, authed: true };
