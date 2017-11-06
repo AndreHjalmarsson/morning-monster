@@ -9,7 +9,7 @@ import Home from './components/Home';
 
 class Root extends Component {
   renderHome() {
-    if (this.props.auth) {
+    if (this.props.authed) {
       return <Home />;
     } else {
       return <Landing />;
@@ -23,7 +23,7 @@ class Root extends Component {
 
 function mapStateToProps(state) {
   return {
-    auth: state.auth.authed
+    authed: state.auth.authed
   };
 }
 
