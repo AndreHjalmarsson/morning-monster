@@ -10,13 +10,13 @@ import { Spinner } from './common';
 class LoginForm extends Component {
   constructor() {
     super();
-    this.state = { username: '', password: '', err: '' };
+    this.state = { username: '', password: '', err: '', loading: false };
   }
 
   onButtonPress() {
-    const { username, password } = this.state;
+    const { username, password, loading } = this.state;
 
-    this.props.startLoading();
+    this.setState({ loading: true });
 
     firebase
       .auth()
@@ -29,7 +29,7 @@ class LoginForm extends Component {
   }
 
   renderButton() {
-    if (this.props.loading) {
+    if (this.state.loading) {
       return <Spinner />;
     }
     return <Button title={'LOGIN'} onPress={this.onButtonPress.bind(this)} />;
