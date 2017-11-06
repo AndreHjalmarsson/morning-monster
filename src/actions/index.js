@@ -1,4 +1,4 @@
-import { AUTH_USER, UNAUTH_USER } from './types';
+import { AUTH_USER, UNAUTH_USER, LOADING, STOP_LOADING } from './types';
 
 export function loginUser() {
   return dispatch => {
@@ -9,5 +9,17 @@ export function loginUser() {
 export function logoutUser() {
   return dispatch => {
     dispatch({ type: UNAUTH_USER });
+  };
+}
+
+export function startLoading() {
+  return dispatch => {
+    dispatch({ type: LOADING });
+  };
+}
+
+export function stopLoading() {
+  return dispatch => {
+    dispatch({ type: STOP_LOADING });
   };
 }
