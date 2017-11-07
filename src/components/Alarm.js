@@ -16,13 +16,15 @@ class Alarm extends Component {
 
   onUpdate = ({ startAngle, angleLength }) => {
     this.setState({
-      startAngle: helpers.roundAngleToFives(startAngle),
-      angleLength: helpers.roundAngleToFives(angleLength)
+      startAngle,
+      angleLength
     });
+    this.props.createAlarm(startAngle, angleLength);
   };
 
   render() {
     const { startAngle, angleLength } = this.state;
+
     const bedtimeHour = helpers.calculateHour(startAngle);
     const bedtimeMinutes = helpers.calculateMinutes(startAngle);
     const waketimeHour = helpers.calculateHour(
@@ -44,13 +46,7 @@ class Alarm extends Component {
         <CircularSlider
           startAngle={startAngle}
           angleLength={angleLength}
-          onUpdate={({ startAngle, angleLength }) => {
-            this.setState({ startAngle, angleLength });
-            this.props.createAlarm(
-              this.state.startAngle,
-              this.state.angleLength
-            );
-          }}
+          onUpdate={this.onUpdate}
           segments={10}
           strokeWidth={30}
           radius={105}
