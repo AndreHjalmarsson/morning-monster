@@ -1,6 +1,12 @@
 import firebase from 'firebase';
 
-import { AUTH_USER, UNAUTH_USER, LOADING, STOP_LOADING } from './types';
+import {
+  AUTH_USER,
+  UNAUTH_USER,
+  LOADING,
+  STOP_LOADING,
+  ALARM_FETCH
+} from './types';
 
 export function loginUser() {
   return dispatch => {
@@ -33,5 +39,17 @@ export function createAlarm(bedTime, sleepTime) {
       .database()
       .ref(`/users/${currentUser.uid}/alarm`)
       .set({ bedTime, sleepTime });
+  };
+}
+
+export function fetchAlarm() {
+  return dispatch => {
+    const { currentUser } = firebase.auth();
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/alarm`)
+      .on('value', snapshot => {
+        dispatch({ type: ALARM_FETCH, payload: snapshot.val() });
+      });
   };
 }
