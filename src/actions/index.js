@@ -1,3 +1,5 @@
+import firebase from 'firebase';
+
 import { AUTH_USER, UNAUTH_USER, LOADING, STOP_LOADING } from './types';
 
 export function loginUser() {
@@ -21,5 +23,15 @@ export function startLoading() {
 export function stopLoading() {
   return dispatch => {
     dispatch({ type: STOP_LOADING });
+  };
+}
+
+export function createAlarm(bedTime, sleepTime) {
+  return dispatch => {
+    const { currentUser } = firebase.auth();
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/alarm`)
+      .set({ bedTime, sleepTime });
   };
 }
