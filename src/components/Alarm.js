@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Button } from 'react-native';
 import CircularSlider from 'react-native-circular-slider';
 import Swiper from 'react-native-swiper';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions';
 
 import * as helpers from '../Helpers';
 
-export default class Alarm extends Component {
+class Alarm extends Component {
   state = { startAngle: Math.PI * 10 / 6, angleLength: Math.PI * 7 / 6 };
 
   onTimeUpdate = (fromTimeInMinutes, minutesLong) => {
@@ -40,10 +42,15 @@ export default class Alarm extends Component {
           {waketimeHour}:{helpers.padMinutes(waketimeMinutes)}
         </Text>
         <CircularSlider
-          startAngle={this.state.startAngle}
-          angleLength={this.state.angleLength}
-          onUpdate={({ startAngle, angleLength }) =>
-            this.setState({ startAngle, angleLength })}
+          startAngle={startAngle}
+          angleLength={angleLength}
+          onUpdate={({ startAngle, angleLength }) => {
+            this.setState({ startAngle, angleLength });
+            this.props.createAlarm(
+              this.state.startAngle,
+              this.state.angleLength
+            );
+          }}
           segments={10}
           strokeWidth={30}
           radius={105}
@@ -57,6 +64,8 @@ export default class Alarm extends Component {
     );
   }
 }
+
+export default connect(null, actionCreators)(Alarm);
 
 const styles = {
   container: {
