@@ -20,6 +20,7 @@ class Alarm extends Component {
       angleLength
     });
     this.props.createAlarm(startAngle, angleLength);
+    this.props.fetchAlarm();
   };
 
   render() {
@@ -56,12 +57,19 @@ class Alarm extends Component {
           clockFaceColor="#9d9d9d"
           bgCircleColor="#171717"
         />
+        <Text>{console.log(this.props.fetchedAlarmTime)}</Text>
       </View>
     );
   }
 }
 
-export default connect(null, actionCreators)(Alarm);
+function mapStateToProps(state) {
+  return {
+    fetchedAlarmTime: state.alarm.alarmTime
+  };
+}
+
+export default connect(mapStateToProps, actionCreators)(Alarm);
 
 const styles = {
   container: {
