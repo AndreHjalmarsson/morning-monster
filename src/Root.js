@@ -9,7 +9,7 @@ import Home from './components/Home';
 
 class Root extends Component {
   renderHome() {
-    if (!this.props.authed) {
+    if (this.props.authed) {
       return <Home />;
     } else {
       return <Landing />;
