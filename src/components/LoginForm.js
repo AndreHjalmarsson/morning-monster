@@ -10,29 +10,32 @@ import { Spinner } from './common';
 class LoginForm extends Component {
   constructor() {
     super();
-    this.state = { username: '', password: '', err: '', loading: false };
+    this.state = { username: '', password: '', err: '' };
   }
 
-  onButtonPress() {
-    const { username, password, loading } = this.state;
+  onLoginPress() {
+    const { username, password } = this.state;
 
-    this.setState({ loading: true });
+    this.props.startLoading();
 
     firebase
       .auth()
       .signInWithEmailAndPassword(username, password)
-      .then(() => this.props.loginUser())
-      .catch(
-        () => this.setState({ err: 'Something went wrong' }),
-        this.props.stopLoading()
-      );
+      .then(() => {
+        this.props.loginUser();
+        this.props.stopLoading();
+      })
+      .catch(() => {
+        this.setState({ err: 'Something went wrong' });
+        this.props.stopLoading();
+      });
   }
 
   renderButton() {
-    if (this.state.loading) {
+    if (this.props.loading) {
       return <Spinner />;
     }
-    return <Button title={'LOGIN'} onPress={this.onButtonPress.bind(this)} />;
+    return <Button title={'LOGIN'} onPress={this.onLoginPress.bind(this)} />;
   }
 
   renderRegisterButton() {
