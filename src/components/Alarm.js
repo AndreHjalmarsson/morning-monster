@@ -10,54 +10,71 @@ import * as helpers from '../Helpers';
 class Alarm extends Component {
   state = { startAngle: Math.PI * 10 / 6, angleLength: Math.PI * 7 / 6 };
 
-  onTimeUpdate = (fromTimeInMinutes, minutesLong) => {
-    this.setState({ minutesLong });
-  };
+  componentWillMount() {
+    this.props.fetchAlarm();
+  }
 
   onUpdate = ({ startAngle, angleLength }) => {
-    this.setState({
-      startAngle,
-      angleLength
-    });
     this.props.createAlarm(startAngle, angleLength);
     this.props.fetchAlarm();
   };
 
+  renderTimeText() {
+    const { dbTime } = this.props;
+    if (dbTime) {
+      const { bedTime, sleepTime } = dbTime;
+      const bedtimeHour = helpers.calculateHour(bedTime);
+      const bedtimeMinutes = helpers.calculateMinutes(bedTime);
+      const waketimeHour = helpers.calculateHour(
+        (bedTime + sleepTime) % (2 * Math.PI)
+      );
+      const waketimeMinutes = helpers.calculateMinutes(
+        (bedTime + sleepTime) % (2 * Math.PI)
+      );
+      return (
+        <View>
+          <Text>
+            {bedtimeHour}:{helpers.padMinutes(bedtimeMinutes)}
+          </Text>
+          <Text>
+            {waketimeHour}:{helpers.padMinutes(waketimeMinutes)}
+          </Text>
+        </View>
+      );
+    } else {
+      return (
+        <View>
+          <Text>
+            10:00
+          </Text>
+          <Text>
+            05:00
+          </Text>
+        </View>
+      )
+    }
+  }
+
   render() {
     const { startAngle, angleLength } = this.state;
-
-    const bedtimeHour = helpers.calculateHour(startAngle);
-    const bedtimeMinutes = helpers.calculateMinutes(startAngle);
-    const waketimeHour = helpers.calculateHour(
-      (startAngle + angleLength) % (2 * Math.PI)
-    );
-    const waketimeMinutes = helpers.calculateMinutes(
-      (startAngle + angleLength) % (2 * Math.PI)
-    );
+    const { dbTime } = this.props;
 
     return (
       <View style={styles.container}>
         <Text>Alarmm</Text>
-        <Text>
-          {bedtimeHour}:{helpers.padMinutes(bedtimeMinutes)}
-        </Text>
-        <Text>
-          {waketimeHour}:{helpers.padMinutes(waketimeMinutes)}
-        </Text>
+        {this.renderTimeText()}
         <CircularSlider
-          startAngle={startAngle}
-          angleLength={angleLength}
+          startAngle={dbTime ? dbTime.bedTime : startAngle}
+          angleLength={dbTime ? dbTime.sleepTime : angleLength}
           onUpdate={this.onUpdate}
           segments={10}
           strokeWidth={30}
           radius={105}
           gradientColorFrom="#ff9800"
           gradientColorTo="#ffcf00"
-          showClockFace
           clockFaceColor="#9d9d9d"
           bgCircleColor="#171717"
         />
-        <Text>{console.log(this.props.fetchedAlarmTime)}</Text>
       </View>
     );
   }
@@ -65,7 +82,7 @@ class Alarm extends Component {
 
 function mapStateToProps(state) {
   return {
-    fetchedAlarmTime: state.alarm.alarmTime
+    dbTime: state.alarm.alarmTime
   };
 }
 
