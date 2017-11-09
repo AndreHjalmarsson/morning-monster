@@ -6,7 +6,8 @@ import {
   LOADING,
   STOP_LOADING,
   ALARM_FETCH,
-  ALARM_ACTIVATE
+  ALARM_ACTIVATE,
+  ALARM_ON
 } from './types';
 
 export function loginUser() {
@@ -55,8 +56,10 @@ export function fetchAlarm() {
   };
 }
 
-export function activateAlarm(bedTimeH, bedTimeM, wakeTimeH, wakeTimeM) {
+export function startAlarm(bedTimeH, bedTimeM, wakeTimeH, wakeTimeM) {
   return dispatch => {
+    dispatch({ type: ALARM_ON });
+
     let now = new Date();
     let timeTillWake =
       new Date(
