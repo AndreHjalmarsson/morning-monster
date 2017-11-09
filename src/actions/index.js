@@ -58,7 +58,7 @@ export function fetchAlarm() {
 export function activateAlarm(bedTimeH, bedTimeM, wakeTimeH, wakeTimeM) {
   return dispatch => {
     let now = new Date();
-    let wakeMills =
+    let timeTillWake =
       new Date(
         now.getFullYear(),
         now.getMonth(),
@@ -69,10 +69,9 @@ export function activateAlarm(bedTimeH, bedTimeM, wakeTimeH, wakeTimeM) {
         0
       ) - now;
 
-    if (wakeMills < 0) {
-      wakeMills += 86400000;
+    if (timeTillWake < 0) {
+      timeTillWake += 86400000;
     }
-    console.log(wakeMills);
-    setTimeout(() => dispatch({ type: ALARM_ACTIVATE }), wakeMills);
+    setTimeout(() => dispatch({ type: ALARM_ACTIVATE }), timeTillWake);
   };
 }
