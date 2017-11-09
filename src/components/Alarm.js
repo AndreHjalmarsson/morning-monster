@@ -10,7 +10,7 @@ import { Spinner } from './common';
 class Alarm extends Component {
   state = { startAngle: Math.PI * 10 / 6, angleLength: Math.PI * 7 / 6 };
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchAlarm();
   }
 
@@ -42,7 +42,7 @@ class Alarm extends Component {
           <Button
             title="Aktivera"
             onPress={() =>
-              this.props.activateAlarm(
+              this.props.startAlarm(
                 bedtimeHour,
                 bedtimeMinutes,
                 waketimeHour,
@@ -63,29 +63,28 @@ class Alarm extends Component {
 
   render() {
     const { startAngle, angleLength } = this.state;
-    const { dbTime, loading } = this.props;
+    const { dbTime } = this.props;
 
     if (!dbTime) {
       return <Spinner />;
-    } else {
-      return (
-        <View style={styles.container}>
-          {this.renderTimeText()}
-          <CircularSlider
-            startAngle={dbTime ? dbTime.bedTime : startAngle}
-            angleLength={dbTime ? dbTime.sleepTime : angleLength}
-            onUpdate={this.onUpdate}
-            segments={10}
-            strokeWidth={30}
-            radius={105}
-            gradientColorFrom="#ff9800"
-            gradientColorTo="#ffcf00"
-            clockFaceColor="#9d9d9d"
-            bgCircleColor="#171717"
-          />
-        </View>
-      );
     }
+    return (
+      <View style={styles.container}>
+        {this.renderTimeText()}
+        <CircularSlider
+          startAngle={dbTime ? dbTime.bedTime : startAngle}
+          angleLength={dbTime ? dbTime.sleepTime : angleLength}
+          onUpdate={this.onUpdate}
+          segments={10}
+          strokeWidth={30}
+          radius={105}
+          gradientColorFrom="#ff9800"
+          gradientColorTo="#ffcf00"
+          clockFaceColor="#9d9d9d"
+          bgCircleColor="#171717"
+        />
+      </View>
+    );
   }
 }
 
