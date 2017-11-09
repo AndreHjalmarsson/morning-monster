@@ -5,7 +5,8 @@ import {
   UNAUTH_USER,
   LOADING,
   STOP_LOADING,
-  ALARM_FETCH
+  ALARM_FETCH,
+  ALARM_ACTIVATE
 } from './types';
 
 export function loginUser() {
@@ -69,9 +70,9 @@ export function activateAlarm(bedTimeH, bedTimeM, wakeTimeH, wakeTimeM) {
       ) - now;
 
     if (wakeMills < 0) {
-      dispatch({ type: ALARM_ACTIVATE });
-      wakeMills += 86400000; // it's after 10am, try 10am tomorrow.'
+      wakeMills += 86400000;
     }
     console.log(wakeMills);
+    setTimeout(() => dispatch({ type: ALARM_ACTIVATE }), wakeMills);
   };
 }
