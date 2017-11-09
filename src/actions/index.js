@@ -53,3 +53,24 @@ export function fetchAlarm() {
       });
   };
 }
+
+export function activateAlarm(bedTimeH, bedTimeM, wakeTimeH, wakeTimeM) {
+  return dispatch => {
+    let now = new Date();
+    let wakeMills =
+      new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        wakeTimeH,
+        wakeTimeM,
+        0,
+        0
+      ) - now;
+
+    if (wakeMills < 0) {
+      wakeMills += 86400000; // it's after 10am, try 10am tomorrow.'
+    }
+    console.log(wakeMills);
+  };
+}
