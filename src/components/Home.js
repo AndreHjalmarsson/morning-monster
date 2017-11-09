@@ -16,7 +16,13 @@ class Home extends Component {
   }
 }
 
-export default connect(null, actionCreators)(Home);
+function mapStateToProps(state) {
+  return {
+    activeAlarm: state.alarm.active
+  };
+}
+
+export default connect(mapStateToProps, actionCreators)(Home);
 
 const styles = {
   container: {
