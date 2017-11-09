@@ -19,6 +19,22 @@ class Alarm extends Component {
     this.props.fetchAlarm();
   };
 
+  // renderAlarmButton() {
+  //   this.props.dbTime ? console.log(this.props.dbTime) : null;
+  //   console.log('hi');
+  //   bedtimeHour ? console.log(bedtimeHour) : null;
+  //   return (
+  //     <Button
+  //       title="Aktivera"
+  //       onPress={() =>
+  //         this.props.activateAlarm(
+  //           this.props.dbTime ? this.props.dbTime.bedTime : 2,
+  //           this.props.dbTime ? this.props.dbTime.sleepTime : 2
+  //         )}
+  //     />
+  //   );
+  // }
+
   renderTimeText() {
     const { dbTime } = this.props;
     if (dbTime) {
@@ -39,19 +55,25 @@ class Alarm extends Component {
           <Text>
             {waketimeHour}:{helpers.padMinutes(waketimeMinutes)}
           </Text>
+          <Button
+            title="Aktivera"
+            onPress={() =>
+              this.props.activateAlarm(
+                bedtimeHour,
+                bedtimeMinutes,
+                waketimeHour,
+                waketimeMinutes
+              )}
+          />
         </View>
       );
     } else {
       return (
         <View>
-          <Text>
-            10:00
-          </Text>
-          <Text>
-            05:00
-          </Text>
+          <Text>10:00</Text>
+          <Text>05:00</Text>
         </View>
-      )
+      );
     }
   }
 
