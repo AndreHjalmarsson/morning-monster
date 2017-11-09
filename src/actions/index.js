@@ -69,6 +69,7 @@ export function activateAlarm(bedTimeH, bedTimeM, wakeTimeH, wakeTimeM) {
       ) - now;
 
     if (wakeMills < 0) {
+      dispatch({ type: ALARM_ACTIVATE });
       wakeMills += 86400000; // it's after 10am, try 10am tomorrow.'
     }
     console.log(wakeMills);
