@@ -4,3 +4,6 @@ export const LOADING = 'loading';
 export const STOP_LOADING = 'stop_loading';
 export const ALARM_FETCH = 'alarm_fetch';
 export const ALARM_ACTIVATE = 'alarm_activate';
+export const ALARM_INACTIVATE = 'alarm_inactivate';
+export const ALARM_ON = 'alarm_on';
+export const ALARM_OFF = 'alarm_off';
