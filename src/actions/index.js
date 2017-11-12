@@ -7,7 +7,9 @@ import {
   STOP_LOADING,
   ALARM_FETCH,
   ALARM_ACTIVATE,
-  ALARM_ON
+  ALARM_INACTIVATE,
+  ALARM_ON,
+  ALARM_OFF
 } from './types';
 
 export function loginUser() {
@@ -56,10 +58,26 @@ export function fetchAlarm() {
   };
 }
 
-export function startAlarm(bedTimeH, bedTimeM, wakeTimeH, wakeTimeM) {
+export function toggleAlarmOn() {
   return dispatch => {
     dispatch({ type: ALARM_ON });
+  };
+}
 
+export function toggleAlarmOff() {
+  return dispatch => {
+    dispatch({ type: ALARM_OFF });
+  };
+}
+
+export function stopAlarm() {
+  return dispatch => {
+    dispatch({ type: ALARM_INACTIVATE });
+  };
+}
+
+export function startAlarm(bedTimeH, bedTimeM, wakeTimeH, wakeTimeM) {
+  return dispatch => {
     let now = new Date();
     let timeTillWake =
       new Date(
@@ -75,6 +93,12 @@ export function startAlarm(bedTimeH, bedTimeM, wakeTimeH, wakeTimeM) {
     if (timeTillWake < 0) {
       timeTillWake += 86400000;
     }
-    setTimeout(() => dispatch({ type: ALARM_ACTIVATE }), timeTillWake);
+    setTimeout(
+      () =>
+        dispatch({
+          type: ALARM_ACTIVATE
+        }),
+      timeTillWake
+    );
   };
 }
