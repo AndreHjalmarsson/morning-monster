@@ -4,21 +4,32 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 
 import Alarm from './Alarm';
+import AlarmActive from './AlarmActive';
 
 class Home extends Component {
-  render() {
+  renderAlarmOrCatch() {
+    const { activeAlarm, alarmOn } = this.props;
+
+    if (activeAlarm && alarmOn) {
+      return <AlarmActive />;
+    }
     return (
-      <View style={styles.container}>
+      <View>
         <Alarm />
         <Button title="Logout" onPress={() => this.props.logoutUser()} />
       </View>
     );
   }
+
+  render() {
+    return <View style={styles.container}>{this.renderAlarmOrCatch()}</View>;
+  }
 }
 
 function mapStateToProps(state) {
   return {
-    activeAlarm: state.alarm.active
+    activeAlarm: state.alarm.active,
+    alarmOn: state.alarm.on
   };
 }
 
