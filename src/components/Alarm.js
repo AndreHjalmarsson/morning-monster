@@ -15,12 +15,25 @@ class Alarm extends Component {
   }
 
   onUpdate = ({ startAngle, angleLength }) => {
+    const { dbTime, alarmOn } = this.props;
+
+    const { bedTime, sleepTime } = dbTime;
+    const bedTimeH = helpers.calculateHour(bedTime);
+    const bedTimeM = helpers.calculateMinutes(bedTime);
+    const wakeTimeH = helpers.calculateHour(
+      (bedTime + sleepTime) % (2 * Math.PI)
+    );
+    const wakeTimeM = helpers.calculateMinutes(
+      (bedTime + sleepTime) % (2 * Math.PI)
+    );
+
     this.props.createAlarm(startAngle, angleLength);
     this.props.fetchAlarm();
+    this.props.startAlarm(bedTimeH, bedTimeM, wakeTimeH, wakeTimeM);
   };
 
   renderTimeText() {
-    const { dbTime } = this.props;
+    const { dbTime, alarmOn } = this.props;
     if (dbTime) {
       const { bedTime, sleepTime } = dbTime;
       const bedtimeHour = helpers.calculateHour(bedTime);
@@ -39,16 +52,7 @@ class Alarm extends Component {
           <Text>
             {waketimeHour}:{helpers.padMinutes(waketimeMinutes)}
           </Text>
-          <Button
-            title="Aktivera"
-            onPress={() =>
-              this.props.startAlarm(
-                bedtimeHour,
-                bedtimeMinutes,
-                waketimeHour,
-                waketimeMinutes
-              )}
-          />
+          {this.renderAlarmButton()}
         </View>
       );
     } else {
@@ -57,6 +61,22 @@ class Alarm extends Component {
           <Text>10:00</Text>
           <Text>05:00</Text>
         </View>
+      );
+    }
+  }
+
+  renderAlarmButton() {
+    const { alarmOn } = this.props;
+    if (!alarmOn) {
+      return (
+        <Button title="Aktivera" onPress={() => this.props.toggleAlarmOn()} />
+      );
+    } else {
+      return (
+        <Button
+          title="Inaktivera"
+          onPress={() => this.props.toggleAlarmOff()}
+        />
       );
     }
   }
@@ -91,7 +111,7 @@ class Alarm extends Component {
 function mapStateToProps(state) {
   return {
     dbTime: state.alarm.alarmTime,
-    loading: state.auth.loading
+    alarmOn: state.alarm.on
   };
 }
 
