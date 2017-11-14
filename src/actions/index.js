@@ -76,7 +76,7 @@ export function stopAlarm() {
   };
 }
 
-export function startAlarm(bedTimeH, bedTimeM, wakeTimeH, wakeTimeM) {
+export function startAlarm(wakeTimeH, wakeTimeM) {
   return dispatch => {
     let now = new Date();
     let timeTillWake =
@@ -101,4 +101,8 @@ export function startAlarm(bedTimeH, bedTimeM, wakeTimeH, wakeTimeM) {
       timeTillWake
     );
   };
+}
+
+export function startPushNotification(bedTimeH, bedTimeM) {
+  return dispatch => {};
 }
