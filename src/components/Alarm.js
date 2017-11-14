@@ -29,11 +29,12 @@ class Alarm extends Component {
 
     this.props.createAlarm(startAngle, angleLength);
     this.props.fetchAlarm();
-    this.props.startAlarm(bedTimeH, bedTimeM, wakeTimeH, wakeTimeM);
+    alarmOn ? this.props.startAlarm(wakeTimeH, wakeTimeM) : null;
+    alarmOn ? this.props.startPushNotification(bedTimeH, bedTimeM) : null;
   };
 
   renderTimeText() {
-    const { dbTime, alarmOn } = this.props;
+    const { dbTime } = this.props;
     if (dbTime) {
       const { bedTime, sleepTime } = dbTime;
       const bedtimeHour = helpers.calculateHour(bedTime);
