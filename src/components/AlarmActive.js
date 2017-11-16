@@ -7,7 +7,7 @@ class AlarmActive extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button title="Catch!!" onPress={() => this.props.stopAlarm()} />
+        <Button title="Catch!!!" onPress={() => this.props.stopAlarm()} />
       </View>
     );
   }
