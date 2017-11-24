@@ -3,7 +3,7 @@ import { View, Button } from 'react-native';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 
-class AlarmActive extends Component {
+class ARScene extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -19,7 +19,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, actionCreators)(AlarmActive);
+export default connect(mapStateToProps, actionCreators)(ARScene);
 
 const styles = {
   container: {
