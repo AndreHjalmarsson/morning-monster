@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 
 import Alarm from './Alarm';
-import AlarmActive from './AlarmActive';
+import ARScene from './ARScene';
 
 class Home extends Component {
   renderAlarmOrCatch() {
     const { activeAlarm, alarmOn } = this.props;
 
     if (activeAlarm && alarmOn === true) {
-      return <AlarmActive />;
+      return <ARScene />;
     }
     return (
       <View>
