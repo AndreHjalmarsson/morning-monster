@@ -16,7 +16,7 @@ class Home extends Component {
     return (
       <View>
         <Alarm />
-        <Button title="Logout" onPress={() => this.props.logoutUser()} />
+        <Button title="Logou" onPress={() => this.props.logoutUser()} />
       </View>
     );
   }
