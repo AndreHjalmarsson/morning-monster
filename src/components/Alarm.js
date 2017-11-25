@@ -29,8 +29,8 @@ class Alarm extends Component {
 
     this.props.createAlarm(startAngle, angleLength);
     this.props.fetchAlarm();
-    alarmOn ? this.props.startAlarm(wakeTimeH, wakeTimeM) : null;
-    alarmOn ? this.props.startPushNotification(bedTimeH, bedTimeM) : null;
+    this.props.startAlarm(wakeTimeH, wakeTimeM);
+    this.props.startPushNotification(bedTimeH, bedTimeM);
   };
 
   renderTimeText() {

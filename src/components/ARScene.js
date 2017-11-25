@@ -25,10 +25,13 @@ class ARScene extends Component {
 
   render() {
     return (
-      <ViroARSceneNavigator
-        {...this.state.sharedProps}
-        initialScene={{ scene: InitialARScene }}
-      />
+      <View>
+        <ViroARSceneNavigator
+          {...this.state.sharedProps}
+          initialScene={{ scene: InitialARScene }}
+        />
+        <Button title="Catch!!!" onPress={() => this.props.stopAlarm()} />
+      </View>
     );
   }
 }
@@ -40,11 +43,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, actionCreators)(ARScene);
-
-const styles = {
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-};
