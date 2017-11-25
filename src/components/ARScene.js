@@ -30,7 +30,7 @@ class ARScene extends Component {
           {...this.state.sharedProps}
           initialScene={{ scene: InitialARScene }}
         />
-        <Button title="Catch!!!" onPress={() => this.props.stopAlarm()} />
+        <Button title="Catch!!!!" onPress={() => this.props.stopAlarm()} />
       </View>
     );
   }
