@@ -4,6 +4,8 @@ import { Scene, Router, Stack } from 'react-native-router-flux';
 
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
+import Settings from './components/Settings';
+import { Header } from './components/common';
 
 const RouterComponent = () => {
   return (
