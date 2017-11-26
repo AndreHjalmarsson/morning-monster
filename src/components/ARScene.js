@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Button,
-  StyleSheet,
-  PixelRatio,
-  TouchableHighlight
-} from 'react-native';
+import { View, Button, PixelRatio, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import { ViroSceneNavigator, ViroARSceneNavigator } from 'react-viro';
 import * as actionCreators from '../actions';
@@ -25,12 +19,11 @@ class ARScene extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <ViroARSceneNavigator
           {...this.state.sharedProps}
           initialScene={{ scene: InitialARScene }}
         />
-        <Button title="Catch!!!!" onPress={() => this.props.stopAlarm()} />
       </View>
     );
   }
@@ -43,3 +36,10 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, actionCreators)(ARScene);
+
+const styles = {
+  container: {
+    flex: 1,
+    width: '100%'
+  }
+};

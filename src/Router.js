@@ -10,7 +10,12 @@ const RouterComponent = () => {
     <View style={styles.container}>
       <Router>
         <Stack key="root">
-          <Scene key="login" component={LoginForm} title={false} />
+          <Scene
+            key="login"
+            component={LoginForm}
+            title={false}
+            hideNavBar={true}
+          />
           <Scene key="register" component={RegisterForm} />
         </Stack>
       </Router>

@@ -7,6 +7,8 @@ import * as actionCreators from './actions';
 import Landing from './components/Landing';
 import Home from './components/Home';
 
+import { BackgroundImage } from './components/common';
+
 class Root extends Component {
   renderHome() {
     if (this.props.authed) {
