@@ -6,6 +6,7 @@ import * as actionCreators from '../actions';
 
 import * as helpers from '../Helpers';
 import { Spinner } from './common';
+import { Header } from './common';
 
 class Alarm extends Component {
   state = { startAngle: Math.PI * 10 / 6, angleLength: Math.PI * 7 / 6 };
@@ -47,13 +48,13 @@ class Alarm extends Component {
       );
       return (
         <View>
+          {this.renderAlarmButton()}
           <Text>
             {bedtimeHour}:{helpers.padMinutes(bedtimeMinutes)}
           </Text>
           <Text>
             {waketimeHour}:{helpers.padMinutes(waketimeMinutes)}
           </Text>
-          {this.renderAlarmButton()}
         </View>
       );
     } else {
@@ -91,6 +92,7 @@ class Alarm extends Component {
     }
     return (
       <View style={styles.container}>
+        <Header />
         {this.renderTimeText()}
         <CircularSlider
           startAngle={dbTime ? dbTime.bedTime : startAngle}
@@ -121,10 +123,6 @@ export default connect(mapStateToProps, actionCreators)(Alarm);
 const styles = {
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  slider: {
-    width: 200
+    alignItems: 'center'
   }
 };
