@@ -5,20 +5,21 @@ import * as actionCreators from '../actions';
 
 import Alarm from './Alarm';
 import ARScene from './ARScene';
+import Settings from './Settings';
 import { BackgroundImage } from './common';
 
 class Home extends Component {
   renderAlarmOrCatch() {
-    const { activeAlarm, alarmOn } = this.props;
+    const { activeAlarm, alarmOn, settings } = this.props;
 
-    if (alarmOn === true) {
+    if (alarmOn == true) {
       return <ARScene />;
+    } else if (settings == true) {
+      return <Settings />;
     }
     return (
       <View style={styles.container}>
-        <BackgroundImage />
         <Alarm />
-        <Button title="Logout" onPress={() => this.props.logoutUser()} />
       </View>
     );
   }
@@ -31,7 +32,8 @@ class Home extends Component {
 function mapStateToProps(state) {
   return {
     activeAlarm: state.alarm.active,
-    alarmOn: state.alarm.on
+    alarmOn: state.alarm.on,
+    settings: state.alarm.settings
   };
 }
 

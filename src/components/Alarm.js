@@ -6,7 +6,8 @@ import * as actionCreators from '../actions';
 
 import * as helpers from '../Helpers';
 import { Spinner } from './common';
-import { Header } from './common';
+import Header from './common/Header';
+import { BackgroundImage } from './common';
 
 class Alarm extends Component {
   state = { startAngle: Math.PI * 10 / 6, angleLength: Math.PI * 7 / 6 };
@@ -92,6 +93,7 @@ class Alarm extends Component {
     }
     return (
       <View style={styles.container}>
+        <BackgroundImage />
         <Header />
         {this.renderTimeText()}
         <CircularSlider
