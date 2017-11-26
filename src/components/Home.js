@@ -5,6 +5,7 @@ import * as actionCreators from '../actions';
 
 import Alarm from './Alarm';
 import ARScene from './ARScene';
+import { BackgroundImage } from './common';
 
 class Home extends Component {
   renderAlarmOrCatch() {
@@ -14,7 +15,8 @@ class Home extends Component {
       return <ARScene />;
     }
     return (
-      <View>
+      <View style={styles.container}>
+        <BackgroundImage />
         <Alarm />
         <Button title="Logout" onPress={() => this.props.logoutUser()} />
       </View>
@@ -38,7 +40,6 @@ export default connect(mapStateToProps, actionCreators)(Home);
 const styles = {
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    width: '100%'
   }
 };
