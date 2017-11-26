@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 import * as actionCreators from './actions';
 
