@@ -1,27 +1,20 @@
 'use strict';
 
 import React, { Component } from 'react';
-
-import { StyleSheet } from 'react-native';
-
 import { ViroARScene, ViroText } from 'react-viro';
 
 export default class HelloWorldSceneAR extends Component {
   constructor() {
     super();
 
-    // Set initial state here
     this.state = {
       text: 'Initializing AR...'
     };
-
-    // bind 'this' to functions
-    this._onInitialized = this._onInitialized.bind(this);
   }
 
   render() {
     return (
-      <ViroARScene onTrackingInitialized={this._onInitialized}>
+      <ViroARScene onTrackingInitialized={this._onInitialized.bind(this)}>
         <ViroText
           text={this.state.text}
           scale={[0.5, 0.5, 0.5]}
@@ -39,7 +32,7 @@ export default class HelloWorldSceneAR extends Component {
   }
 }
 
-var styles = StyleSheet.create({
+let styles = {
   helloWorldTextStyle: {
     fontFamily: 'Arial',
     fontSize: 30,
@@ -47,6 +40,6 @@ var styles = StyleSheet.create({
     textAlignVertical: 'center',
     textAlign: 'center'
   }
-});
+};
 
 module.exports = HelloWorldSceneAR;
