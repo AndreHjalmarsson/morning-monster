@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableHighlight } from 'react-native';
+import { connect } from 'react-redux';
+import * as actionCreators from '../../actions';
 
 class Header extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.settingsLink}
-          source={require('../../../img/settings-24-512.png')}
-        />
+        <TouchableHighlight onPress={() => this.props.enterSettings()}>
+          <Image
+            style={styles.settingsLink}
+            source={require('../../../img/settings-24-512.png')}
+          />
+        </TouchableHighlight>
       </View>
     );
   }
 }
+
+export default connect(null, actionCreators)(Header);
 
 const styles = {
   container: {
@@ -28,5 +34,3 @@ const styles = {
     right: 0
   }
 };
-
-export { Header };
