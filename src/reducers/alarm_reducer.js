@@ -3,7 +3,9 @@ import {
   ALARM_ACTIVATE,
   ALARM_INACTIVATE,
   ALARM_ON,
-  ALARM_OFF
+  ALARM_OFF,
+  SETTINGS_ENTER,
+  SETTINGS_EXIT
 } from '../actions/types';
 
 export default function(state = {}, action) {
@@ -18,6 +20,10 @@ export default function(state = {}, action) {
       return { ...state, on: true };
     case ALARM_OFF:
       return { ...state, on: false };
+    case SETTINGS_ENTER:
+      return { ...state, settings: true };
+    case SETTINGS_EXIT:
+      return { ...state, settings: false };
   }
   return state;
 }
