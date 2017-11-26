@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, Button } from 'react-native';
+import { Text, View, TextInput, Button, Image } from 'react-native';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 
 import { Spinner } from './common';
+import { BackgroundImage } from './common';
 
 class LoginForm extends Component {
   constructor() {
@@ -45,6 +46,7 @@ class LoginForm extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <BackgroundImage />
         <TextInput
           style={styles.textField}
           placeholder="Username"

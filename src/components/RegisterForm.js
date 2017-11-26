@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, TextInput, Button } from 'react-native';
 import firebase from 'firebase';
 
+import { BackgroundImage } from './common';
+
 export default class RegisterForm extends Component {
   constructor() {
     super();
@@ -19,6 +21,7 @@ export default class RegisterForm extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <BackgroundImage />
         <TextInput
           style={styles.textField}
           placeholder="Username"
