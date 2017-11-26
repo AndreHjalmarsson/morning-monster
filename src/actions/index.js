@@ -9,7 +9,9 @@ import {
   ALARM_ACTIVATE,
   ALARM_INACTIVATE,
   ALARM_ON,
-  ALARM_OFF
+  ALARM_OFF,
+  SETTINGS_ENTER,
+  SETTINGS_EXIT
 } from './types';
 
 export function loginUser() {
@@ -105,4 +107,16 @@ export function startAlarm(wakeTimeH, wakeTimeM) {
 
 export function startPushNotification(bedTimeH, bedTimeM) {
   return dispatch => {};
+}
+
+export function enterSettings() {
+  return dispatch => {
+    dispatch({ type: SETTINGS_ENTER });
+  };
+}
+
+export function exitSettings() {
+  return dispatch => {
+    dispatch({ type: SETTINGS_EXIT });
+  };
 }
