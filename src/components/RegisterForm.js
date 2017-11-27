@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, Button } from 'react-native';
 import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 
 import { BackgroundImage } from './common';
+import AuthHeader from './common/AuthHeader';
 
 export default class RegisterForm extends Component {
   constructor() {
@@ -22,6 +24,7 @@ export default class RegisterForm extends Component {
     return (
       <View style={styles.container}>
         <BackgroundImage />
+        <AuthHeader reg={true} />
         <TextInput
           style={styles.textField}
           placeholder="Username"
@@ -48,8 +51,7 @@ const styles = {
   container: {
     width: '100%',
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: 'center'
   },
   textField: {
     borderColor: 'white',

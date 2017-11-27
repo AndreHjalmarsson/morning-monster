@@ -14,6 +14,7 @@ import * as actionCreators from '../actions';
 
 import { Spinner } from './common';
 import { BackgroundImage } from './common';
+import AuthHeader from './common/AuthHeader';
 
 class LoginForm extends Component {
   constructor() {
@@ -50,34 +51,11 @@ class LoginForm extends Component {
     return <Button title="Create account" onPress={Actions.register} />;
   }
 
-  topText() {
-    return (
-      <View style={styles.topContainer}>
-        <Text style={styles.topText}>WAKIE</Text>
-        <Text style={styles.sloganText}>Awesome slogan here</Text>
-        <View style={styles.navContainer}>
-          <TouchableHighlight>
-            <Text style={styles.navTextCurrent}>SIGN IN</Text>
-          </TouchableHighlight>
-          <TouchableHighlight onPress={Actions.register}>
-            <Text style={styles.navText}>SIGN UP</Text>
-          </TouchableHighlight>
-        </View>
-        <View style={styles.navImgWrapper}>
-          <Image
-            style={styles.navImage}
-            source={require('../../img/nav-login.png')}
-          />
-        </View>
-      </View>
-    );
-  }
-
   render() {
     return (
       <View style={styles.container}>
         <BackgroundImage />
-        {this.topText()}
+        <AuthHeader login={true} />
         <TextInput
           style={styles.textField}
           placeholder="Username"
