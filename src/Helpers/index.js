@@ -1,5 +1,5 @@
 export function calculateMinutesFromAngle(angle) {
-  return Math.round(angle / (2 * Math.PI / (12 * 24))) * 5;
+  return Math.round(angle / (2 * Math.PI / (12 * 12))) * 5;
 }
 
 export function calculateHour(angle) {
