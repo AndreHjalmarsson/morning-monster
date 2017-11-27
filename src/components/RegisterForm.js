@@ -47,7 +47,6 @@ export default class RegisterForm extends Component {
 const styles = {
   container: {
     width: '100%',
-    backgroundColor: 'pink',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
