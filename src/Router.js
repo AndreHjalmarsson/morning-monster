@@ -18,7 +18,7 @@ const RouterComponent = () => {
             title={false}
             hideNavBar={true}
           />
-          <Scene key="register" component={RegisterForm} />
+          <Scene key="register" component={RegisterForm} hideNavBar={true} />
         </Stack>
       </Router>
     </View>
