@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, Button, Image } from 'react-native';
+import {
+  Text,
+  View,
+  TextInput,
+  Button,
+  Image,
+  TouchableHighlight
+} from 'react-native';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -43,10 +50,34 @@ class LoginForm extends Component {
     return <Button title="Create account" onPress={Actions.register} />;
   }
 
+  topText() {
+    return (
+      <View style={styles.topContainer}>
+        <Text style={styles.topText}>WAKIE</Text>
+        <Text style={styles.sloganText}>Awesome slogan here</Text>
+        <View style={styles.navContainer}>
+          <TouchableHighlight>
+            <Text style={styles.navTextCurrent}>SIGN IN</Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={Actions.register}>
+            <Text style={styles.navText}>SIGN UP</Text>
+          </TouchableHighlight>
+        </View>
+        <View style={styles.navImgWrapper}>
+          <Image
+            style={styles.navImage}
+            source={require('../../img/nav-login.png')}
+          />
+        </View>
+      </View>
+    );
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <BackgroundImage />
+        {this.topText()}
         <TextInput
           style={styles.textField}
           placeholder="Username"
@@ -64,7 +95,6 @@ class LoginForm extends Component {
         />
         {this.renderButton()}
         <Text>{this.state.err}</Text>
-        {this.renderRegisterButton()}
       </View>
     );
   }
@@ -81,10 +111,15 @@ export default connect(mapStateToProps, actionCreators)(LoginForm);
 const styles = {
   container: {
     width: '100%',
-    backgroundColor: 'pink',
     flex: 1,
+    alignItems: 'center'
+  },
+  topContainer: {
     alignItems: 'center',
-    justifyContent: 'center'
+    marginBottom: 40
+  },
+  navContainer: {
+    flexDirection: 'row'
   },
   textField: {
     borderColor: 'white',
@@ -94,6 +129,47 @@ const styles = {
     textAlign: 'center',
     borderWidth: 1,
     backgroundColor: 'white',
+    borderRadius: 7
+  },
+  topText: {
+    fontSize: 55,
+    fontWeight: '900',
+    marginTop: 100,
+    marginBottom: 3,
+    color: 'white',
+    backgroundColor: 'transparent'
+  },
+  sloganText: {
+    backgroundColor: 'transparent',
+    color: 'white',
+    fontWeight: '200',
+    fontSize: 17,
+    marginBottom: 30
+  },
+  navText: {
+    color: 'white',
+    backgroundColor: 'transparent',
+    marginLeft: 15,
+    marginRight: 15,
+    fontSize: 20,
+    fontWeight: '900'
+  },
+  navTextCurrent: {
+    color: 'white',
+    backgroundColor: 'transparent',
+    marginLeft: 20,
+    marginRight: 40,
+    fontSize: 20,
+    fontWeight: '900',
+    color: '#B2FF59'
+  },
+  navImgWrapper: {
+    width: 265,
+    height: 10
+  },
+  navImage: {
+    maxWidth: '100%',
+    maxHeight: '100%',
     borderRadius: 7
   }
 };
