@@ -7,7 +7,7 @@ class BackgroundImage extends Component {
       <View style={style.imageWrapper}>
         <Image
           style={style.imageStyle}
-          source={require('../../../img/bg-pink.jpg')}
+          source={require('../../../img/bg-pink--gradient.png')}
         />
       </View>
     );
