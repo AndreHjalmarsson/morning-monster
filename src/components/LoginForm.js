@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  TextInput,
-  Button,
-  Image,
-  TouchableHighlight
-} from 'react-native';
+import { Text, View, TextInput, Image, TouchableHighlight } from 'react-native';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions';
+import Button from 'react-native-button';
 
+import * as actionCreators from '../actions';
 import { Spinner } from './common';
 import { BackgroundImage } from './common';
 import AuthHeader from './common/AuthHeader';
@@ -40,15 +34,29 @@ class LoginForm extends Component {
       });
   }
 
-  renderButton() {
+  renderButtons() {
     if (this.props.loading) {
       return <Spinner />;
     }
-    return <Button title={'LOGIN'} onPress={this.onLoginPress.bind(this)} />;
-  }
-
-  renderRegisterButton() {
-    return <Button title="Create account" onPress={Actions.register} />;
+    return (
+      <View style={styles.buttonsContainer}>
+        <Button
+          containerStyle={styles.signinButtonContainer}
+          style={styles.signinButtonInner}
+          onPress={this.onLoginPress.bind(this)}
+        >
+          SIGN IN
+        </Button>
+        <Text style={styles.alternativeSignin}>OR</Text>
+        <Button
+          containerStyle={styles.faceButtonContainer}
+          style={styles.faceButtonInner}
+          onPress={this.onLoginPress.bind(this)}
+        >
+          SIGN IN VIA FACEBOOK
+        </Button>
+      </View>
+    );
   }
 
   render() {
@@ -58,20 +66,20 @@ class LoginForm extends Component {
         <AuthHeader login={true} />
         <TextInput
           style={styles.textField}
-          placeholder="Username"
+          placeholder="USERNAME"
           value={this.state.username}
           onChangeText={text => this.setState({ username: text })}
           autoCorrect={false}
         />
         <TextInput
           style={styles.textField}
-          placeholder="Password"
+          placeholder="PASSWORD"
           value={this.state.password}
           onChangeText={text => this.setState({ password: text })}
           secureTextEntry={true}
           autoCorrect={false}
         />
-        {this.renderButton()}
+        {this.renderButtons()}
         <Text>{this.state.err}</Text>
       </View>
     );
@@ -92,62 +100,53 @@ const styles = {
     flex: 1,
     alignItems: 'center'
   },
-  topContainer: {
-    alignItems: 'center',
-    marginBottom: 40
-  },
-  navContainer: {
-    flexDirection: 'row'
-  },
   textField: {
     borderColor: 'white',
-    width: '70%',
+    width: '75%',
     marginBottom: 10,
-    height: 40,
+    height: 50,
     textAlign: 'center',
     borderWidth: 1,
     backgroundColor: 'white',
-    borderRadius: 7
+    borderRadius: 40
   },
-  topText: {
-    fontSize: 55,
-    fontWeight: '900',
-    marginTop: 100,
-    marginBottom: 3,
-    color: 'white',
-    backgroundColor: 'transparent'
+  buttonsContainer: {
+    alignItems: 'center'
   },
-  sloganText: {
-    backgroundColor: 'transparent',
-    color: 'white',
-    fontWeight: '200',
-    fontSize: 17,
-    marginBottom: 30
+  signinButtonContainer: {
+    padding: 10,
+    paddingTop: 13,
+    height: 50,
+    overflow: 'hidden',
+    borderRadius: 40,
+    backgroundColor: '#B2FF59'
   },
-  navText: {
-    color: 'white',
-    backgroundColor: 'transparent',
-    marginLeft: 15,
-    marginRight: 15,
+  signinButtonInner: {
     fontSize: 20,
-    fontWeight: '900'
+    fontWeight: 'bold',
+    color: 'black',
+    width: 260,
+    height: 50
   },
-  navTextCurrent: {
+  faceButtonContainer: {
+    padding: 10,
+    paddingTop: 15,
+    height: 50,
+    overflow: 'hidden',
+    borderRadius: 40,
+    backgroundColor: '#3B5898'
+  },
+  faceButtonInner: {
+    fontSize: 16,
+    fontWeight: 'bold',
     color: 'white',
+    width: 260,
+    height: 50
+  },
+  alternativeSignin: {
     backgroundColor: 'transparent',
-    marginLeft: 20,
-    marginRight: 40,
-    fontSize: 20,
-    fontWeight: '900',
-    color: '#B2FF59'
-  },
-  navImgWrapper: {
-    width: 265,
-    height: 10
-  },
-  navImage: {
-    maxWidth: '100%',
-    maxHeight: '100%',
-    borderRadius: 7
+    color: 'white',
+    marginBottom: 10,
+    marginTop: 10
   }
 };

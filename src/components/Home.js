@@ -12,7 +12,7 @@ class Home extends Component {
   renderAlarmOrCatch() {
     const { activeAlarm, alarmOn, settings } = this.props;
 
-    if (alarmOn == true) {
+    if (activeAlarm && alarmOn == true) {
       return <ARScene />;
     } else if (settings == true) {
       return <Settings />;
