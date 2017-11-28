@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableHighlight } from 'react-native';
+import { View, Text, Image, TouchableHighlight, Switch } from 'react-native';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions';
 
@@ -10,9 +10,10 @@ class Header extends Component {
         <TouchableHighlight onPress={() => this.props.enterSettings()}>
           <Image
             style={styles.settingsLink}
-            source={require('../../../img/settings-24-512.png')}
+            source={require('../../../img/icn-settings.png')}
           />
         </TouchableHighlight>
+        <Switch />
       </View>
     );
   }
@@ -31,6 +32,7 @@ const styles = {
     width: 40,
     height: 40,
     position: 'absolute',
-    right: 0
+    right: 25,
+    top: 5
   }
 };
