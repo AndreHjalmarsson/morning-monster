@@ -6,18 +6,19 @@ import * as actionCreators from '../actions';
 
 import * as helpers from '../Helpers';
 import { Spinner } from './common';
-import Header from './common/Header';
 import { BackgroundImage } from './common';
+import Header from './common/Header';
+import TimeText from './TimeText';
 
 class Alarm extends Component {
   state = { startAngle: Math.PI * 10 / 6, angleLength: Math.PI * 7 / 6 };
 
   componentDidMount() {
-    this.props.fetchAlarm();
+    // this.props.fetchAlarm();
   }
 
   onUpdate = ({ startAngle, angleLength }) => {
-    const { dbTime, alarmOn } = this.props;
+    const { dbTime, alarmToggleOn } = this.props;
 
     const { bedTime, sleepTime } = dbTime;
     const bedTimeH = helpers.calculateHour(bedTime);
@@ -31,78 +32,29 @@ class Alarm extends Component {
 
     this.props.createAlarm(startAngle, angleLength);
     this.props.fetchAlarm();
-    this.props.startAlarm(wakeTimeH, wakeTimeM);
-    this.props.startPushNotification(bedTimeH, bedTimeM);
+    alarmToggleOn ? this.props.startAlarm(wakeTimeH, wakeTimeM) : null;
+    alarmToggleOn ? this.props.startPushNotification(bedTimeH, bedTimeM) : null;
   };
-
-  renderTimeText() {
-    const { dbTime } = this.props;
-    if (dbTime) {
-      const { bedTime, sleepTime } = dbTime;
-      const bedtimeHour = helpers.calculateHour(bedTime);
-      const bedtimeMinutes = helpers.calculateMinutes(bedTime);
-      const waketimeHour = helpers.calculateHour(
-        (bedTime + sleepTime) % (2 * Math.PI)
-      );
-      const waketimeMinutes = helpers.calculateMinutes(
-        (bedTime + sleepTime) % (2 * Math.PI)
-      );
-      return (
-        <View>
-          {this.renderAlarmButton()}
-          <Text>
-            {bedtimeHour}:{helpers.padMinutes(bedtimeMinutes)}
-          </Text>
-          <Text>
-            {waketimeHour}:{helpers.padMinutes(waketimeMinutes)}
-          </Text>
-        </View>
-      );
-    } else {
-      return (
-        <View>
-          <Text>10:00</Text>
-          <Text>05:00</Text>
-        </View>
-      );
-    }
-  }
-
-  renderAlarmButton() {
-    const { alarmOn } = this.props;
-    if (!alarmOn) {
-      return (
-        <Button title="Aktivera" onPress={() => this.props.toggleAlarmOn()} />
-      );
-    } else {
-      return (
-        <Button
-          title="Inaktivera"
-          onPress={() => this.props.toggleAlarmOff()}
-        />
-      );
-    }
-  }
 
   render() {
     const { startAngle, angleLength } = this.state;
     const { dbTime } = this.props;
 
-    if (!dbTime) {
-      return <Spinner />;
-    }
+    // if (!dbTime) {
+    //   return <Spinner />;
+    // }
     return (
       <View style={styles.container}>
         <BackgroundImage />
         <Header />
-        {this.renderTimeText()}
+        <TimeText />
         <CircularSlider
           startAngle={dbTime ? dbTime.bedTime : startAngle}
           angleLength={dbTime ? dbTime.sleepTime : angleLength}
           onUpdate={this.onUpdate}
           segments={10}
-          strokeWidth={30}
-          radius={105}
+          strokeWidth={40}
+          radius={120}
           gradientColorFrom="#ff9800"
           gradientColorTo="#ffcf00"
           clockFaceColor="#9d9d9d"
@@ -116,7 +68,7 @@ class Alarm extends Component {
 function mapStateToProps(state) {
   return {
     dbTime: state.alarm.alarmTime,
-    alarmOn: state.alarm.on
+    alarmToggleOn: state.alarm.alarmToggleOn
   };
 }
 
