@@ -10,9 +10,9 @@ import { BackgroundImage } from './common';
 
 class Home extends Component {
   renderAlarmOrCatch() {
-    const { activeAlarm, alarmOn, settings } = this.props;
+    const { activeAlarm, alarmToggleOn, settings } = this.props;
 
-    if (activeAlarm && alarmOn == true) {
+    if (activeAlarm && alarmToggleOn == true) {
       return <ARScene />;
     } else if (settings == true) {
       return <Settings />;
@@ -32,7 +32,7 @@ class Home extends Component {
 function mapStateToProps(state) {
   return {
     activeAlarm: state.alarm.active,
-    alarmOn: state.alarm.on,
+    alarmToggleOn: state.alarm.alarmToggleOn,
     settings: state.alarm.settings
   };
 }
