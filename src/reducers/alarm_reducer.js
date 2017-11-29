@@ -17,9 +17,9 @@ export default function(state = {}, action) {
     case ALARM_INACTIVATE:
       return { ...state, active: false };
     case ALARM_ON:
-      return { ...state, on: true };
+      return { ...state, alarmToggleOn: true };
     case ALARM_OFF:
-      return { ...state, on: false };
+      return { ...state, alarmToggleOn: false };
     case SETTINGS_ENTER:
       return { ...state, settings: true };
     case SETTINGS_EXIT:
