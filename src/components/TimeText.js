@@ -20,13 +20,25 @@ class TimeText extends Component {
         (bedTime + sleepTime) % (2 * Math.PI)
       );
       return (
-        <View style={styles.timeContainer}>
-          <Text style={styles.bedTime}>
-            {bedtimeHour}:{helpers.padMinutes(bedtimeMinutes)}
-          </Text>
-          <Text styles={styles.wakeTime}>
-            {waketimeHour}:{helpers.padMinutes(waketimeMinutes)}
-          </Text>
+        <View style={styles.container}>
+          <View style={styles.bedtimeContainer}>
+            <Image
+              style={styles.timeIcons}
+              source={require('../../img/icn-moon.png')}
+            />
+            <Text style={styles.bedtimeText}>
+              {bedtimeHour}:{helpers.padMinutes(bedtimeMinutes)}
+            </Text>
+          </View>
+          <View style={styles.waketimeContainer}>
+            <Image
+              style={styles.timeIcons}
+              source={require('../../img/icn-sun.png')}
+            />
+            <Text style={styles.waketimeText}>
+              {waketimeHour}:{helpers.padMinutes(waketimeMinutes)}
+            </Text>
+          </View>
         </View>
       );
     } else {
@@ -66,27 +78,35 @@ const styles = {
     marginBottom: 20
   },
   bedtimeContainer: {
-    backgroundColor: 'black',
+    backgroundColor: '#292A30',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
     height: 48,
     width: 130,
     borderRadius: 7,
-    marginRight: 20
+    marginRight: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.6,
+    shadowRadius: 2
   },
   waketimeContainer: {
-    backgroundColor: 'white',
+    backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
     height: 48,
     width: 130,
     marginLeft: 20,
-    borderRadius: 7
+    borderRadius: 7,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.6,
+    shadowRadius: 2
   },
   bedtimeText: {
-    color: 'white',
+    color: '#FFFFFF',
     textAlign: 'center',
     fontSize: 25,
     lineHeight: 25,
@@ -94,7 +114,7 @@ const styles = {
     marginTop: 5
   },
   waketimeText: {
-    color: 'black',
+    color: '#292A30',
     textAlign: 'center',
     fontSize: 25,
     lineHeight: 25,
