@@ -35,7 +35,7 @@ class Header extends Component {
             source={require('../../../img/icn-settings.png')}
           />
         </TouchableHighlight>
-        <Text style={styles.h1}>Alarm</Text>
+        <Text style={styles.h1}>ALARM</Text>
         <View>
           <Switch
             onValueChange={value => this.handleChange(value)}
@@ -60,15 +60,15 @@ const styles = {
     alignItems: 'center',
     height: 20,
     width: '100%',
-    marginTop: 15,
-    marginBottom: 150
+    marginTop: 8,
+    marginBottom: 130
   },
   settingsLink: {
     width: 40,
     height: 40,
     right: 25,
     marginLeft: 340,
-    top: 5
+    top: 17
   },
   h1: {
     fontSize: 25,
