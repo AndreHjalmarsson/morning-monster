@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableHighlight, Switch } from 'react-native';
 import { connect } from 'react-redux';
+
 import * as actionCreators from '../../actions';
+import * as helpers from '../../Helpers';
 
 class Header extends Component {
   state = { trueSwitchIsOn: true };
 
   componentWillMount() {
     const { trueSwitchIsOn } = this.state;
+
+    if (trueSwitchIsOn == true) {
+      this.props.toggleAlarmOn();
+    } else {
+      this.props.toggleAlarmOff();
+    }
+  }
+
+  handleChange(value) {
     const { dbTime, alarmToggleOn } = this.props;
     const { bedTime, sleepTime } = dbTime;
 
@@ -20,19 +31,11 @@ class Header extends Component {
       (bedTime + sleepTime) % (2 * Math.PI)
     );
 
-    if (trueSwitchIsOn == true) {
-      this.props.toggleAlarmOn();
-      this.props.startAlarm(wakeTimeH, wakeTimeM);
-      this.props.startPushNotification(bedTimeH, bedTimeM);
-    } else {
-      this.props.toggleAlarmOff();
-    }
-  }
-
-  handleChange(value) {
     if (value == true) {
       this.setState({ trueSwitchIsOn: value });
       this.props.toggleAlarmOn();
+      this.props.startAlarm(wakeTimeH, wakeTimeM);
+      this.props.startPushNotification(bedTimeH, bedTimeM);
     } else {
       this.setState({ trueSwitchIsOn: value });
       this.props.toggleAlarmOff();
