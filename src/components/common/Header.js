@@ -8,9 +8,22 @@ class Header extends Component {
 
   componentWillMount() {
     const { trueSwitchIsOn } = this.state;
+    const { dbTime, alarmToggleOn } = this.props;
+    const { bedTime, sleepTime } = dbTime;
+
+    const bedTimeH = helpers.calculateHour(bedTime);
+    const bedTimeM = helpers.calculateMinutes(bedTime);
+    const wakeTimeH = helpers.calculateHour(
+      (bedTime + sleepTime) % (2 * Math.PI)
+    );
+    const wakeTimeM = helpers.calculateMinutes(
+      (bedTime + sleepTime) % (2 * Math.PI)
+    );
 
     if (trueSwitchIsOn == true) {
       this.props.toggleAlarmOn();
+      this.props.startAlarm(wakeTimeH, wakeTimeM);
+      this.props.startPushNotification(bedTimeH, bedTimeM);
     } else {
       this.props.toggleAlarmOff();
     }
@@ -49,7 +62,8 @@ class Header extends Component {
 
 function mapStateToProps(state) {
   return {
-    alarmToggleOn: state.alarm.alarmToggleOn
+    alarmToggleOn: state.alarm.alarmToggleOn,
+    dbTime: state.alarm.alarmTime
   };
 }
 

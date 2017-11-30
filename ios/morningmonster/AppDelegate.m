@@ -38,9 +38,6 @@
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
     rootView.backgroundColor = [[UIColor alloc] initWithRed:0.97 green:0.30 blue:0.51 alpha:1];
-    // rootView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg-pink--gradient.png"]];
-    // rootView.backgroundColor = [UIColor clearColor];
-
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     UIViewController *rootViewController = [UIViewController new];
     rootViewController.view = rootView;
