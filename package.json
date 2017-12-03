@@ -23,6 +23,7 @@
     "react-native": "^0.49.5",
     "react-native-button": "^2.1.0",
     "react-native-circular-slider": "^1.0.1",
+    "react-native-push-notification": "^3.0.1",
     "react-native-router-flux": "^4.0.0-beta.22",
     "react-native-svg": "^5.4.2",
     "react-native-swiper": "^1.5.13",
