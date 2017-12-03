@@ -30,3 +30,19 @@ export function padMinutes(min) {
 
   return min;
 }
+
+export function startPushNotificationTimer(wakeTimeH, wakeTimeM) {
+  let now = new Date();
+  let timeTillWake =
+    new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      wakeTimeH,
+      wakeTimeM,
+      0,
+      0
+    ) - now;
+
+  return timeTillWake;
+}
