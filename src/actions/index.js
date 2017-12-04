@@ -11,7 +11,8 @@ import {
   ALARM_ON,
   ALARM_OFF,
   SETTINGS_ENTER,
-  SETTINGS_EXIT
+  SETTINGS_EXIT,
+  FETCH_USER
 } from './types';
 
 export function loginUser() {
@@ -118,5 +119,19 @@ export function enterSettings() {
 export function exitSettings() {
   return dispatch => {
     dispatch({ type: SETTINGS_EXIT });
+  };
+}
+
+export function fetchUser() {
+  const user = firebase.auth().currentUser;
+  return dispatch => {
+    dispatch({ type: FETCH_USER, payload: user });
+  };
+}
+
+export function updateSettings(email) {
+  return dispatch => {
+    const { currentUser } = firebase.auth();
+    currentUser.updateEmail(email);
   };
 }
