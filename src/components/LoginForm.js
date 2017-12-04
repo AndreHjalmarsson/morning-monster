@@ -66,7 +66,7 @@ class LoginForm extends Component {
         <AuthHeader login={true} />
         <TextInput
           style={styles.textField}
-          placeholder="USERNAME"
+          placeholder="EMAIL"
           value={this.state.username}
           onChangeText={text => this.setState({ username: text })}
           autoCorrect={false}
