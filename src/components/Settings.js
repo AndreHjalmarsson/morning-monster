@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, Button, TextInput } from 'react-native';
+import {
+  View,
+  Button,
+  TextInput,
+  TouchableHighlight,
+  Image,
+  Text
+} from 'react-native';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 
@@ -8,24 +15,37 @@ import { BackgroundImage } from './common';
 class Settings extends Component {
   constructor() {
     super();
-    this.state = { username: '', password: '', email: '', err: '' };
+    this.state = { password: '', email: '', err: '' };
+  }
+
+  componentDidMount() {
+    this.props.fetchUser();
   }
 
   render() {
     return (
       <View style={styles.container}>
         <BackgroundImage />
-        <Button title="Back" onPress={() => this.props.exitSettings()} />
+        <View style={styles.iconContainer}>
+          <TouchableHighlight onPress={() => this.props.exitSettings()}>
+            <Image
+              style={styles.settingsLinkBack}
+              source={require('../../img/icn-settings.png')}
+            />
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={() => this.props.updateSettings(this.state.email)}
+          >
+            <Image
+              style={styles.settingsLinkConfirm}
+              source={require('../../img/icn-moon.png')}
+            />
+          </TouchableHighlight>
+        </View>
+        <Text>SETTINGS</Text>
         <TextInput
           style={styles.textField}
-          placeholder="Username"
-          value={this.state.username}
-          onChangeText={text => this.setState({ username: text })}
-          autoCorrect={false}
-        />
-        <TextInput
-          style={styles.textField}
-          placeholder="Email"
+          placeholder={this.props.user ? this.props.user.email : null}
           value={this.state.email}
           onChangeText={text => this.setState({ email: text })}
           autoCorrect={false}
@@ -50,23 +70,44 @@ class Settings extends Component {
   }
 }
 
-export default connect(null, actionCreators)(Settings);
+function mapStateToProps(state) {
+  return {
+    user: state.auth.user
+  };
+}
+
+export default connect(mapStateToProps, actionCreators)(Settings);
 
 const styles = {
   container: {
     width: '100%',
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: 'center'
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    marginBottom: 100
   },
   textField: {
     borderColor: 'white',
-    width: '70%',
+    width: '75%',
     marginBottom: 10,
-    height: 40,
+    height: 50,
     textAlign: 'center',
     borderWidth: 1,
     backgroundColor: 'white',
-    borderRadius: 7
+    borderRadius: 40
+  },
+  settingsLinkBack: {
+    width: 40,
+    height: 40,
+    top: 25,
+    marginRight: 125
+  },
+  settingsLinkConfirm: {
+    width: 40,
+    height: 40,
+    top: 25,
+    marginLeft: 125
   }
 };
