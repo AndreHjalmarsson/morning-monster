@@ -2,7 +2,8 @@ import {
   AUTH_USER,
   UNAUTH_USER,
   LOADING,
-  STOP_LOADING
+  STOP_LOADING,
+  FETCH_USER
 } from '../actions/types';
 
 export default function(state = {}, action) {
@@ -15,6 +16,8 @@ export default function(state = {}, action) {
       return { ...state, loading: true };
     case STOP_LOADING:
       return { ...state, loading: false };
+    case FETCH_USER:
+      return { ...state, user: action.payload };
   }
   return state;
 }
