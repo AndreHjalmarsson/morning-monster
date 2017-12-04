@@ -38,7 +38,13 @@ class Settings extends Component {
           secureTextEntry={true}
           autoCorrect={false}
         />
-        <Button title="Logout" onPress={() => this.props.logoutUser()} />
+        <Button
+          title="Logout"
+          onPress={() => {
+            this.props.logoutUser();
+            this.props.exitSettings();
+          }}
+        />
       </View>
     );
   }
