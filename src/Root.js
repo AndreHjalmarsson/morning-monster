@@ -58,13 +58,14 @@ class Root extends Component {
 
     if (appState === 'background' && alarmToggleOn) {
       PushNotification.localNotificationSchedule({
-        message: 'Time to go to sleep', // (required)
-        date: new Date(Date.now() + sleepPushTimer) // in 60 secs
+        message: 'Time to go to sleep',
+        date: new Date(Date.now() + sleepPushTimer)
       });
       PushNotification.localNotificationSchedule({
-        message: 'Silence the monster', // (required)
-        date: new Date(Date.now() + wakePushTimer) // in 60 secs
+        message: 'Silence the monster',
+        date: new Date(Date.now() + wakePushTimer)
       });
+      console.log(wakePushTimer);
     }
   }
 
