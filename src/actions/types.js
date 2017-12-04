@@ -9,3 +9,4 @@ export const ALARM_ON = 'alarm_on';
 export const ALARM_OFF = 'alarm_off';
 export const SETTINGS_ENTER = 'settings_enter';
 export const SETTINGS_EXIT = 'settings_exit';
+export const FETCH_USER = 'fetch_user';
