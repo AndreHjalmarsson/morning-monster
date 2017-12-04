@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, Button, Image } from 'react-native';
 import CircularSlider from 'react-native-circular-slider';
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions';
 
+import * as actionCreators from '../actions';
 import * as helpers from '../Helpers';
 
 class TimeText extends Component {
@@ -111,7 +111,8 @@ const styles = {
     fontSize: 25,
     lineHeight: 25,
     marginRight: 10,
-    marginTop: 5
+    marginTop: 5,
+    width: 80
   },
   waketimeText: {
     color: '#292A30',
@@ -119,7 +120,8 @@ const styles = {
     fontSize: 25,
     lineHeight: 25,
     marginRight: 10,
-    marginTop: 5
+    marginTop: 5,
+    width: 80
   },
   timeIcons: {
     width: 20,
