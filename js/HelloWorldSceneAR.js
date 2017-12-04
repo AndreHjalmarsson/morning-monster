@@ -8,8 +8,11 @@ import {
   ViroAmbientLight,
   Viro3DObject
 } from 'react-viro';
+import { connect } from 'react-redux';
 
-export default class HelloWorldSceneAR extends Component {
+import * as actionCreators from '../src/actions';
+
+class HelloWorldSceneAR extends Component {
   constructor() {
     super();
 
@@ -54,9 +57,14 @@ export default class HelloWorldSceneAR extends Component {
           position={[0.0, 0.0, -2]}
           scale={[0.05, 0.05, 0.05]}
           type="VRX"
+          onClick={this._onClick.bind(this)}
         />
       </ViroARScene>
     );
+  }
+
+  _onClick() {
+    this.props.stopAlarm();
   }
 
   _onInitialized() {
@@ -65,6 +73,8 @@ export default class HelloWorldSceneAR extends Component {
     });
   }
 }
+
+export default connect(null, actionCreators)(HelloWorldSceneAR);
 
 let styles = {
   helloWorldTextStyle: {
@@ -75,5 +85,3 @@ let styles = {
     textAlign: 'center'
   }
 };
-
-module.exports = HelloWorldSceneAR;
