@@ -44,5 +44,9 @@ export function startPushNotificationTimer(wakeTimeH, wakeTimeM) {
       0
     ) - now;
 
+  if (timeTillWake < 0) {
+    timeTillWake += 86400000;
+  }
+
   return timeTillWake;
 }
