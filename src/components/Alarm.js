@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Text, View, Button, Image } from 'react-native';
 import CircularSlider from 'react-native-circular-slider';
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions';
 import Svg, { G, Path } from 'react-native-svg';
 
+import * as actionCreators from '../actions';
 import * as helpers from '../Helpers';
 import { Spinner } from './common';
 import { BackgroundImage } from './common';
