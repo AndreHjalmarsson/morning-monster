@@ -31,22 +31,42 @@ export function padMinutes(min) {
   return min;
 }
 
-export function startPushNotificationTimer(wakeTimeH, wakeTimeM) {
-  let now = new Date();
-  let timeTillWake =
+export function startWakePushNotificationTimer(wakeTimeH, wakeTimeM) {
+  let wakePushDate = new Date();
+  let timeTillPushWake =
     new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate(),
+      wakePushDate.getFullYear(),
+      wakePushDate.getMonth(),
+      wakePushDate.getDate(),
       wakeTimeH,
       wakeTimeM,
       0,
       0
-    ) - now;
+    ) - wakePushDate;
 
-  if (timeTillWake < 0) {
-    timeTillWake += 86400000;
+  if (timeTillPushWake < 0) {
+    timeTillPushWake += 86400000;
   }
 
-  return timeTillWake;
+  return timeTillPushWake;
+}
+
+export function startSleepPushNotificationTimer(sleepTimeH, sleepTimeM) {
+  let sleepPushDate = new Date();
+  let timeTillPushSleep =
+    new Date(
+      sleepPushDate.getFullYear(),
+      sleepPushDate.getMonth(),
+      sleepPushDate.getDate(),
+      sleepTimeH,
+      sleepTimeM,
+      0,
+      0
+    ) - sleepPushDate;
+
+  if (timeTillPushSleep < 0) {
+    timeTillPushSleep += 86400000;
+  }
+
+  return timeTillPushSleep;
 }
