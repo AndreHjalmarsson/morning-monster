@@ -21,81 +21,112 @@ const BEDTIME_ICON = (
 class Alarm extends Component {
   state = { startAngle: Math.PI * 10 / 6, angleLength: Math.PI * 7 / 6 };
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchAlarm();
   }
 
   onUpdate = ({ startAngle, angleLength }) => {
-    const { dbTime, alarmToggleOn } = this.props;
-
-    const { bedTime, sleepTime } = dbTime;
-    const bedTimeH = helpers.calculateHour(bedTime);
-    const bedTimeM = helpers.calculateMinutes(bedTime);
-    const wakeTimeH = helpers.calculateHour(
-      (bedTime + sleepTime) % (2 * Math.PI)
-    );
-    const wakeTimeM = helpers.calculateMinutes(
-      (bedTime + sleepTime) % (2 * Math.PI)
-    );
-
     this.props.createAlarm(startAngle, angleLength);
     this.props.fetchAlarm();
-    alarmToggleOn ? this.props.startAlarm(wakeTimeH, wakeTimeM) : null;
-    alarmToggleOn ? this.props.startPushNotification(bedTimeH, bedTimeM) : null;
+
+    const { dbTime, alarmToggleOn } = this.props;
+    if (dbTime) {
+      const { bedTime, sleepTime } = dbTime;
+      const wakeTimeH = helpers.calculateHour((bedTime + sleepTime) % (2 * Math.PI));
+      const wakeTimeM = helpers.calculateMinutes((bedTime + sleepTime) % (2 * Math.PI));
+
+      alarmToggleOn ? this.props.startAlarm(wakeTimeH, wakeTimeM) : null;
+    }
   };
 
   displaySleeptime() {
     const { dbTime, alarmToggleOn } = this.props;
+    if (dbTime) {
+      const { sleepTime } = dbTime;
+
+      const sleepTimeCount = helpers.calculateMinutesFromAngle(sleepTime);
+      const hours = Math.floor(sleepTimeCount / 60);
+      const minutes = sleepTimeCount - hours * 60;
+
+      return (
+        <View style={styles.durationContainer}>
+          <View style={styles.durationUpper}>
+            <Image style={styles.durationIcon} source={require('../../img/icn-timer.png')} />
+            <Text style={styles.durationText}>Sleep Duration</Text>
+          </View>
+          <Text style={hours < 7 ? styles.durationTimeWarning : styles.durationTime}>{`${hours}h ${minutes}min`}</Text>
+        </View>
+      );
+    }
+  }
+
+  renderDefaultCircle() {
+    const { startAngle, angleLength } = this.state;
+
+    return (
+      <CircularSlider
+        startAngle={startAngle}
+        angleLength={angleLength}
+        onUpdate={this.onUpdate}
+        segments={10}
+        strokeWidth={40}
+        radius={120}
+        showClockFace
+        gradientColorFrom="#B2FF59"
+        gradientColorTo="#B2FF59"
+        clockFaceColor="#9d9d9d"
+        bgCircleColor="#D81C5F"
+        startIcon={
+          <G scale="1.2" transform={{ translate: '-7, -7' }}>
+            {BEDTIME_ICON}
+          </G>
+        }
+      />
+    );
+  }
+
+  renderUserCircle() {
+    const { dbTime } = this.props;
     const { sleepTime } = dbTime;
 
     const sleepTimeCount = helpers.calculateMinutesFromAngle(sleepTime);
     const hours = Math.floor(sleepTimeCount / 60);
     const minutes = sleepTimeCount - hours * 60;
-
     return (
-      <View style={styles.durationContainer}>
-        <View style={styles.durationUpper}>
-          <Image
-            style={styles.durationIcon}
-            source={require('../../img/icn-timer.png')}
-          />
-          <Text style={styles.durationText}>Sleep Duration</Text>
-        </View>
-        <Text style={styles.durationTime}>{`${hours}h ${minutes}min`}</Text>
-      </View>
+      <CircularSlider
+        startAngle={dbTime ? dbTime.bedTime : startAngle}
+        angleLength={dbTime ? dbTime.sleepTime : angleLength}
+        onUpdate={this.onUpdate}
+        segments={10}
+        strokeWidth={40}
+        radius={120}
+        showClockFace
+        gradientColorFrom={dbTime ? (hours < 7 ? '#A00037' : '#B2FF59') : null}
+        gradientColorTo={dbTime ? (hours < 7 ? '#A00037' : '#B2FF59') : null}
+        clockFaceColor="#9d9d9d"
+        bgCircleColor="#D81C5F"
+        startIcon={
+          <G scale="1.2" transform={{ translate: '-7, -7' }}>
+            {BEDTIME_ICON}
+          </G>
+        }
+      />
     );
   }
 
   render() {
-    const { startAngle, angleLength } = this.state;
     const { dbTime } = this.props;
 
-    if (!dbTime) {
-      return <Spinner />;
-    }
+    // if (loading) {
+    //   return <Spinner />;
+    // }
+
     return (
       <View style={styles.container}>
         <BackgroundImage />
         <Header />
         <TimeText />
-        <CircularSlider
-          startAngle={dbTime ? dbTime.bedTime : startAngle}
-          angleLength={dbTime ? dbTime.sleepTime : angleLength}
-          onUpdate={this.onUpdate}
-          segments={10}
-          strokeWidth={40}
-          radius={120}
-          showClockFace
-          gradientColorFrom="#B2FF59"
-          gradientColorTo="#B2FF59"
-          clockFaceColor="#9d9d9d"
-          bgCircleColor="#D81C5F"
-          startIcon={
-            <G scale="1.2" transform={{ translate: '-7, -7' }}>
-              {BEDTIME_ICON}
-            </G>
-          }
-        />
+        {dbTime ? this.renderUserCircle() : this.renderDefaultCircle()}
         {this.displaySleeptime()}
       </View>
     );
@@ -136,6 +167,12 @@ const styles = {
     fontSize: 17
   },
   durationTime: {
+    color: '#FFFFFF',
+    fontSize: 40,
+    fontWeight: '200',
+    letterSpacing: 2
+  },
+  durationTimeWarning: {
     color: '#FFFFFF',
     fontSize: 40,
     fontWeight: '200',
