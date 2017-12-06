@@ -22,20 +22,13 @@ class Header extends Component {
     const { dbTime, alarmToggleOn } = this.props;
     const { bedTime, sleepTime } = dbTime;
 
-    const bedTimeH = helpers.calculateHour(bedTime);
-    const bedTimeM = helpers.calculateMinutes(bedTime);
-    const wakeTimeH = helpers.calculateHour(
-      (bedTime + sleepTime) % (2 * Math.PI)
-    );
-    const wakeTimeM = helpers.calculateMinutes(
-      (bedTime + sleepTime) % (2 * Math.PI)
-    );
+    const wakeTimeH = helpers.calculateHour((bedTime + sleepTime) % (2 * Math.PI));
+    const wakeTimeM = helpers.calculateMinutes((bedTime + sleepTime) % (2 * Math.PI));
 
     if (value == true) {
       this.setState({ trueSwitchIsOn: value });
       this.props.toggleAlarmOn();
       this.props.startAlarm(wakeTimeH, wakeTimeM);
-      this.props.startPushNotification(bedTimeH, bedTimeM);
     } else {
       this.setState({ trueSwitchIsOn: value });
       this.props.toggleAlarmOff();
@@ -46,17 +39,11 @@ class Header extends Component {
     return (
       <View style={styles.container}>
         <TouchableHighlight onPress={() => this.props.enterSettings()}>
-          <Image
-            style={styles.settingsLink}
-            source={require('../../../img/icn-settings.png')}
-          />
+          <Image style={styles.settingsLink} source={require('../../../img/icn-settings--white2x.png')} />
         </TouchableHighlight>
         <Text style={styles.h1}>ALARM</Text>
         <View>
-          <Switch
-            onValueChange={value => this.handleChange(value)}
-            value={this.state.trueSwitchIsOn}
-          />
+          <Switch onValueChange={value => this.handleChange(value)} value={this.state.trueSwitchIsOn} />
         </View>
       </View>
     );
@@ -81,11 +68,11 @@ const styles = {
     marginBottom: 130
   },
   settingsLink: {
-    width: 40,
-    height: 40,
+    width: 32,
+    height: 32,
     right: 25,
     marginLeft: 340,
-    top: 17
+    top: 32
   },
   h1: {
     fontSize: 25,
