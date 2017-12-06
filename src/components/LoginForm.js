@@ -51,7 +51,7 @@ class LoginForm extends Component {
         <Button
           containerStyle={styles.faceButtonContainer}
           style={styles.faceButtonInner}
-          onPress={this.onLoginPress.bind(this)}
+          onPress={() => console.log('hi')}
         >
           SIGN IN VIA FACEBOOK
         </Button>
@@ -124,7 +124,7 @@ const styles = {
   signinButtonInner: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'black',
+    color: '#292A30',
     width: 260,
     height: 50
   },
