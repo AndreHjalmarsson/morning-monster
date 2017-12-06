@@ -93,6 +93,8 @@ export function startAlarm(wakeTimeH, wakeTimeM) {
         0
       ) - now;
 
+    console.log(timeTillWake);
+
     if (timeTillWake < 0) {
       timeTillWake += 86400000;
     }
@@ -104,10 +106,6 @@ export function startAlarm(wakeTimeH, wakeTimeM) {
       timeTillWake
     );
   };
-}
-
-export function startPushNotification(bedTimeH, bedTimeM) {
-  return dispatch => {};
 }
 
 export function enterSettings() {
@@ -133,5 +131,13 @@ export function updateSettings(email) {
   return dispatch => {
     const { currentUser } = firebase.auth();
     currentUser.updateEmail(email);
+  };
+}
+
+export function deleteUser() {
+  return dispatch => {
+    const { currentUser } = firebase.auth();
+
+    currentUser.delete();
   };
 }
