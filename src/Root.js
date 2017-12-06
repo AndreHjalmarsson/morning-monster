@@ -40,21 +40,11 @@ class Root extends Component {
     const { bedTime, sleepTime } = dbTime;
     const bedTimeH = helpers.calculateHour(bedTime);
     const bedTimeM = helpers.calculateMinutes(bedTime);
-    const wakeTimeH = helpers.calculateHour(
-      (bedTime + sleepTime) % (2 * Math.PI)
-    );
-    const wakeTimeM = helpers.calculateMinutes(
-      (bedTime + sleepTime) % (2 * Math.PI)
-    );
+    const wakeTimeH = helpers.calculateHour((bedTime + sleepTime) % (2 * Math.PI));
+    const wakeTimeM = helpers.calculateMinutes((bedTime + sleepTime) % (2 * Math.PI));
 
-    const sleepPushTimer = helpers.startPushNotificationTimer(
-      bedTimeH,
-      bedTimeM
-    );
-    const wakePushTimer = helpers.startPushNotificationTimer(
-      wakeTimeH,
-      wakeTimeM
-    );
+    const sleepPushTimer = helpers.startSleepPushNotificationTimer(bedTimeH, bedTimeM);
+    const wakePushTimer = helpers.startWakePushNotificationTimer(wakeTimeH, wakeTimeM);
 
     if (appState === 'background' && alarmToggleOn) {
       PushNotification.localNotificationSchedule({
@@ -65,7 +55,6 @@ class Root extends Component {
         message: 'Silence the monster',
         date: new Date(Date.now() + wakePushTimer)
       });
-      console.log(wakePushTimer);
     }
   }
 
