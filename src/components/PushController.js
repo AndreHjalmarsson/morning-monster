@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, Button, Image } from 'react-native';
-import { connect } from 'react-redux';
 import PushNotification from 'react-native-push-notification';
-import * as actionCreators from '../actions';
 
-class PushController extends Component {
+export default class PushController extends Component {
   componentDidMount() {
     PushNotification.configure({
       // (optional) Called when Token is generated (iOS and Android)
@@ -43,11 +41,3 @@ class PushController extends Component {
     return null;
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    dbTime: state.alarm.alarmTime
-  };
-}
-
-export default connect(mapStateToProps, actionCreators)(PushController);
