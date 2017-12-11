@@ -55,7 +55,8 @@ class Root extends Component {
         message: 'Silence the monster',
         date: new Date(Date.now() + wakePushTimer),
         playSound: true,
-        soundName: 'zapsplat_fantasy_giant_angry_growl_003_15421.mp3'
+        // soundName: 'zapsplat_fantasy_giant_angry_growl_003_15421'
+        soundName: 'default'
       });
     }
   }

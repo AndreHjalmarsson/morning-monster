@@ -346,6 +346,7 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		65403B0D1FD15BCF0065BBB5 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		65980C341FDE8F82004C5AEE /* zapsplat_fantasy_giant_angry_growl_003_15421.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = zapsplat_fantasy_giant_angry_growl_003_15421.mp3; path = ../../../../Desktop/zapsplat_fantasy_giant_angry_growl_003_15421.mp3; sourceTree = "<group>"; };
+		65980C361FDE9379004C5AEE /* zapsplat_fantasy_giant_angry_growl_003_15421.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zapsplat_fantasy_giant_angry_growl_003_15421.mp3; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
@@ -493,6 +494,7 @@
 		13B07FAE1A68108700A75B9A /* morningmonster */ = {
 			isa = PBXGroup;
 			children = (
+				65980C361FDE9379004C5AEE /* zapsplat_fantasy_giant_angry_growl_003_15421.mp3 */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
