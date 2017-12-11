@@ -63,7 +63,7 @@ class Settings extends Component {
         <View style={styles.fieldContainer}>
           <Image style={styles.iconEmail} source={require('../../img/icn-email2x.png')} />
           <TextInput
-            style={styles.textField}
+            style={styles.textFieldEmail}
             placeholder={this.props.user ? this.props.user.email : null}
             value={this.state.email}
             onChangeText={text => this.setState({ email: text })}
@@ -73,7 +73,7 @@ class Settings extends Component {
         <View style={styles.fieldContainer}>
           <Image style={styles.iconPassword} source={require('../../img/icn-password2x.png')} />
           <TextInput
-            style={styles.textField}
+            style={styles.textFieldPassword}
             placeholder="Password"
             value={this.state.password}
             onChangeText={text => this.setState({ password: text })}
@@ -139,8 +139,13 @@ const styles = {
     height: 19,
     left: 27
   },
-  textField: {
-    left: 90
+  textFieldEmail: {
+    left: 90,
+    width: 100
+  },
+  textFieldPassword: {
+    left: 95,
+    width: 100
   },
   settingsLinkBack: {
     width: 24,
