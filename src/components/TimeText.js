@@ -13,28 +13,18 @@ class TimeText extends Component {
       const { bedTime, sleepTime } = dbTime;
       const bedtimeHour = helpers.calculateHour(bedTime);
       const bedtimeMinutes = helpers.calculateMinutes(bedTime);
-      const waketimeHour = helpers.calculateHour(
-        (bedTime + sleepTime) % (2 * Math.PI)
-      );
-      const waketimeMinutes = helpers.calculateMinutes(
-        (bedTime + sleepTime) % (2 * Math.PI)
-      );
+      const waketimeHour = helpers.calculateHour((bedTime + sleepTime) % (2 * Math.PI));
+      const waketimeMinutes = helpers.calculateMinutes((bedTime + sleepTime) % (2 * Math.PI));
       return (
         <View style={styles.container}>
           <View style={styles.bedtimeContainer}>
-            <Image
-              style={styles.timeIcons}
-              source={require('../../img/icn-moon.png')}
-            />
+            <Image style={styles.timeIconMoon} source={require('../../img/icn-moon.png')} />
             <Text style={styles.bedtimeText}>
               {bedtimeHour}:{helpers.padMinutes(bedtimeMinutes)}
             </Text>
           </View>
           <View style={styles.waketimeContainer}>
-            <Image
-              style={styles.timeIcons}
-              source={require('../../img/icn-sun.png')}
-            />
+            <Image style={styles.timeIconSun} source={require('../../img/icn-sun.png')} />
             <Text style={styles.waketimeText}>
               {waketimeHour}:{helpers.padMinutes(waketimeMinutes)}
             </Text>
@@ -45,17 +35,11 @@ class TimeText extends Component {
       return (
         <View style={styles.container}>
           <View style={styles.bedtimeContainer}>
-            <Image
-              style={styles.timeIcons}
-              source={require('../../img/icn-moon.png')}
-            />
+            <Image style={styles.timeIconMoon} source={require('../../img/icn-moon.png')} />
             <Text style={styles.bedtimeText}>10:00</Text>
           </View>
           <View style={styles.waketimeContainer}>
-            <Image
-              style={styles.timeIcons}
-              source={require('../../img/icn-sun.png')}
-            />
+            <Image style={styles.timeIconSun} source={require('../../img/icn-sun.png')} />
             <Text style={styles.waketimeText}>05:00</Text>
           </View>
         </View>
@@ -110,23 +94,31 @@ const styles = {
     textAlign: 'center',
     fontSize: 25,
     lineHeight: 25,
-    marginRight: 10,
+    marginRight: 17,
     marginTop: 5,
-    width: 80
+    width: 70
   },
   waketimeText: {
     color: '#292A30',
     textAlign: 'center',
     fontSize: 25,
     lineHeight: 25,
-    marginRight: 10,
+    marginRight: 17,
     marginTop: 5,
-    width: 80
+    width: 70
   },
-  timeIcons: {
+  timeIconMoon: {
     width: 20,
     height: 20,
-    marginLeft: 5,
-    marginRight: 10
+    marginLeft: 17,
+    marginRight: 10,
+    marginTop: 2
+  },
+  timeIconSun: {
+    width: 26,
+    height: 26,
+    marginLeft: 17,
+    marginRight: 10,
+    marginTop: 3
   }
 };
