@@ -1,13 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import {
-  ViroARScene,
-  ViroText,
-  ViroSpotLight,
-  ViroAmbientLight,
-  Viro3DObject
-} from 'react-viro';
+import { ViroARScene, ViroText, ViroSpotLight, ViroAmbientLight, Viro3DObject, ViroSound } from 'react-viro';
 import { connect } from 'react-redux';
 
 import * as actionCreators from '../src/actions';
@@ -41,7 +35,7 @@ class HelloWorldSceneAR extends Component {
           outerAngle={20}
         />
 
-        <ViroAmbientLight color="#FF0000" />
+        <ViroAmbientLight color="#FFFFFF" />
 
         <Viro3DObject
           source={require('./res/MM_export_new/MM_export_new.vrx')}
@@ -58,6 +52,15 @@ class HelloWorldSceneAR extends Component {
           scale={[0.05, 0.05, 0.05]}
           type="VRX"
           onClick={this._onClick.bind(this)}
+        />
+        <ViroSound
+          paused={false}
+          muted={false}
+          source={require('../sounds/zapsplat_fantasy_giant_angry_growl_003_15421.mp3')}
+          loop={true}
+          volume={1.0}
+          // onFinish={this.onFinishSound}
+          // onError={this.onErrorSound}
         />
       </ViroARScene>
     );
