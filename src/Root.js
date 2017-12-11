@@ -53,7 +53,9 @@ class Root extends Component {
       });
       PushNotification.localNotificationSchedule({
         message: 'Silence the monster',
-        date: new Date(Date.now() + wakePushTimer)
+        date: new Date(Date.now() + wakePushTimer),
+        playSound: true,
+        soundName: 'zapsplat_fantasy_giant_angry_growl_003_15421.mp3'
       });
     }
   }
