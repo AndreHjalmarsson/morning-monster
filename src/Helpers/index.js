@@ -34,15 +34,8 @@ export function padMinutes(min) {
 export function startWakePushNotificationTimer(wakeTimeH, wakeTimeM) {
   let wakePushDate = new Date();
   let timeTillPushWake =
-    new Date(
-      wakePushDate.getFullYear(),
-      wakePushDate.getMonth(),
-      wakePushDate.getDate(),
-      wakeTimeH,
-      wakeTimeM,
-      0,
-      0
-    ) - wakePushDate;
+    new Date(wakePushDate.getFullYear(), wakePushDate.getMonth(), wakePushDate.getDate(), wakeTimeH, wakeTimeM, 0, 0) -
+    wakePushDate;
 
   if (timeTillPushWake < 0) {
     timeTillPushWake += 86400000;
