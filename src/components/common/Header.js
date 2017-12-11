@@ -28,6 +28,7 @@ class Header extends Component {
     if (value == true) {
       this.setState({ trueSwitchIsOn: value });
       this.props.toggleAlarmOn();
+      this.props.stopAlarm();
       this.props.startAlarm(wakeTimeH, wakeTimeM);
     } else {
       this.setState({ trueSwitchIsOn: value });
