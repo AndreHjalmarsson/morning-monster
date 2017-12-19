@@ -26,8 +26,8 @@
 #ifdef DEBUG
     if(usingNgrok) {
       VRTBundleURLProvider *bundleProvider = [[VRTBundleURLProvider alloc] init];
-      // jsCodeLocation = [bundleProvider jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-      jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+      // jsCodeLocation = [bundleProvider jsBundleURLForBundleRoot:@"index" fallbackResource:nil]; //for public
+      jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil]; //for dev
     }
 #endif
     if(jsCodeLocation == nil) {

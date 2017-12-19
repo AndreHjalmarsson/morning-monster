@@ -55,8 +55,7 @@ class HelloWorldSceneAR extends Component {
           physicsBody={{
             type: 'dynamic',
             mass: 1,
-            force: { value: [-1, -1, 1] },
-            torque: [0, 1, 0],
+            force: { value: [-0.2, -0.2, 0.2] },
             useGravity: false
           }}
         />
