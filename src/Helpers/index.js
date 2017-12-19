@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import Svg, { G, Path } from 'react-native-svg';
 
 export function calculateMinutesFromAngle(angle) {
