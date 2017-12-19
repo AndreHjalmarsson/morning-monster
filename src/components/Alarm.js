@@ -105,7 +105,11 @@ class Alarm extends Component {
     const { dbTime } = this.props;
 
     if (!dbTime) {
-      return <Spinner />;
+      return (
+        <View style={styles.spinnerContainer}>
+          <Spinner />
+        </View>
+      );
     }
 
     return (
@@ -164,5 +168,8 @@ const styles = {
     fontSize: 40,
     fontWeight: '200',
     letterSpacing: 2
+  },
+  spinnerContainer: {
+    top: 300
   }
 };
