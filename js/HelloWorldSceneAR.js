@@ -52,6 +52,13 @@ class HelloWorldSceneAR extends Component {
           scale={[0.05, 0.05, 0.05]}
           type="VRX"
           onClick={this._onClick.bind(this)}
+          physicsBody={{
+            type: 'dynamic',
+            mass: 1,
+            force: { value: [-1, -1, 1] },
+            torque: [0, 1, 0],
+            useGravity: false
+          }}
         />
         <ViroSound
           paused={false}
