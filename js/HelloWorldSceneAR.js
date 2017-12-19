@@ -48,14 +48,14 @@ class HelloWorldSceneAR extends Component {
             require('./res/MM_export_new/eyes_spec.jpg'),
             require('./res/MM_export_new/eyes.jpg')
           ]}
-          position={[0.0, 0.0, -2]}
+          position={[0.0, 0.0, -3]}
           scale={[0.05, 0.05, 0.05]}
           type="VRX"
           onClick={this._onClick.bind(this)}
           physicsBody={{
             type: 'dynamic',
             mass: 1,
-            force: { value: [-0.2, -0.2, 0.2] },
+            force: { value: [-0.2, 0, 0.2] },
             useGravity: false
           }}
         />
