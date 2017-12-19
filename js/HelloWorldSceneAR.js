@@ -59,8 +59,6 @@ class HelloWorldSceneAR extends Component {
           source={require('../sounds/zapsplat_fantasy_giant_angry_growl_003_15421.mp3')}
           loop={true}
           volume={1.0}
-          // onFinish={this.onFinishSound}
-          // onError={this.onErrorSound}
         />
       </ViroARScene>
     );
