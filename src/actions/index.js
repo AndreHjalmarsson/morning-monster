@@ -12,7 +12,9 @@ import {
   ALARM_OFF,
   SETTINGS_ENTER,
   SETTINGS_EXIT,
-  FETCH_USER
+  FETCH_USER,
+  ALARM_OPACITY_OFF,
+  ALARM_OPACITY_ON
 } from './types';
 
 export function loginUser() {
@@ -82,16 +84,7 @@ export function stopAlarm() {
 export function startAlarm(wakeTimeH, wakeTimeM) {
   return dispatch => {
     let now = new Date();
-    let timeTillWake =
-      new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate(),
-        wakeTimeH,
-        wakeTimeM,
-        0,
-        0
-      ) - now;
+    let timeTillWake = new Date(now.getFullYear(), now.getMonth(), now.getDate(), wakeTimeH, wakeTimeM, 0, 0) - now;
 
     console.log(timeTillWake);
 
@@ -139,5 +132,17 @@ export function deleteUser() {
     const { currentUser } = firebase.auth();
 
     currentUser.delete();
+  };
+}
+
+export function alarmOpacityOff() {
+  return dispatch => {
+    dispatch({ type: ALARM_OPACITY_OFF });
+  };
+}
+
+export function alarmOpacityOn() {
+  return dispatch => {
+    dispatch({ type: ALARM_OPACITY_ON });
   };
 }
