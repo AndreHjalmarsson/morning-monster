@@ -13,8 +13,10 @@ class Header extends Component {
 
     if (trueSwitchIsOn == true) {
       this.props.toggleAlarmOn();
+      this.props.alarmOpacityOff();
     } else {
       this.props.toggleAlarmOff();
+      this.props.alarmOpacityOff();
     }
   }
 
@@ -30,9 +32,11 @@ class Header extends Component {
       this.props.toggleAlarmOn();
       this.props.stopAlarm();
       this.props.startAlarm(wakeTimeH, wakeTimeM);
+      this.props.alarmOpacityOff();
     } else {
       this.setState({ trueSwitchIsOn: value });
       this.props.toggleAlarmOff();
+      this.props.alarmOpacityOn();
     }
   }
 
