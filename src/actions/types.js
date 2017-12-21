@@ -10,3 +10,5 @@ export const ALARM_OFF = 'alarm_off';
 export const SETTINGS_ENTER = 'settings_enter';
 export const SETTINGS_EXIT = 'settings_exit';
 export const FETCH_USER = 'fetch_user';
+export const ALARM_OPACITY_OFF = 'alarm_opacity_off';
+export const ALARM_OPACITY_ON = 'alarm_opacity_on';

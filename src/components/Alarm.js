@@ -88,9 +88,9 @@ class Alarm extends Component {
         angleLength={dbTime ? dbTime.sleepTime : angleLength}
         onUpdate={this.onUpdate}
         segments={10}
-        strokeWidth={40}
         radius={120}
         showClockFace
+        strokeWidth={40}
         gradientColorFrom={dbTime ? (hours < 7 ? '#A00037' : '#B2FF59') : null}
         gradientColorTo={dbTime ? (hours < 7 ? '#A00037' : '#B2FF59') : null}
         clockFaceColor="#9d9d9d"
@@ -102,7 +102,7 @@ class Alarm extends Component {
   }
 
   render() {
-    const { dbTime } = this.props;
+    const { dbTime, opacity } = this.props;
 
     if (!dbTime) {
       return (
@@ -113,7 +113,7 @@ class Alarm extends Component {
     }
 
     return (
-      <View style={styles.container}>
+      <View style={opacity == true ? styles.opacityContainer : styles.container}>
         <BackgroundImage />
         <Header />
         <TimeText />
@@ -127,7 +127,8 @@ class Alarm extends Component {
 function mapStateToProps(state) {
   return {
     dbTime: state.alarm.alarmTime,
-    alarmToggleOn: state.alarm.alarmToggleOn
+    alarmToggleOn: state.alarm.alarmToggleOn,
+    opacity: state.alarm.opacity
   };
 }
 
@@ -137,6 +138,11 @@ const styles = {
   container: {
     flex: 1,
     alignItems: 'center'
+  },
+  opacityContainer: {
+    flex: 1,
+    alignItems: 'center',
+    opacity: 0.3
   },
   durationContainer: {
     backgroundColor: 'transparent',
