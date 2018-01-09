@@ -18,7 +18,7 @@ export default class RegisterForm extends Component {
     firebase
       .auth()
       .createUserWithEmailAndPassword(username, password)
-      .catch(() => this.setState({ err: 'Something went wrong' }));
+      .catch(() => this.setState({ err: 'Something went wrong...' }));
   }
 
   render() {
